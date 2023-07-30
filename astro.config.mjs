@@ -4,7 +4,7 @@ import solidJs from '@astrojs/solid-js';
 import unocss from '@unocss/astro';
 import presetWind from '@unocss/preset-wind';
 
-import purgecss from 'astro-purgecss';
+// import purgecss from 'astro-purgecss';
 
 // https://astro.build/config
 export default defineConfig({
@@ -20,7 +20,7 @@ export default defineConfig({
         /* more presets */
       ],
     }),
-    purgecss(),
+    // purgecss(),
   ],
   vite: {
     plugins: [],
