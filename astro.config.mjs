@@ -9,7 +9,7 @@ import presetWind from '@unocss/preset-wind';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.kanishkk.vercek.app',
-  outDir: './dist',
+  // outDir: './dist',
   // output: 'server',
   // adapter: vercel({ analytics: true }),
   integrations: [
