@@ -3,5 +3,5 @@
   "framework": "astro",
   "regions": ["bom1"],
   "outputDirectory": ".vercel/",
-  "rewrites": [{ "source": "/api/py/:path*", "destination": "/api/index" }]
+  "routes": [{ "src": "/api/py", "dest": "/api/index.py" }]
 }
