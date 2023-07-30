@@ -1,6 +1,13 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
   "framework": "astro",
+  "buildCommand": "pnpm build",
+  "devCommand": "pnpm dev",
+  "installCommand": "pnpm install",
+  "redirects": [],
   "regions": ["bom1"],
+  "trailingSlash": false,
+  "outputDirectory": ".vercel/",
   "rewrites": [{ "source": "/api/:path*", "destination": "/api" }]
 }
