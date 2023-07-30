@@ -1,5 +1,5 @@
-export const get = () => {
+export const get = async ({ request }) => {
   return {
-    message: 'Hello from JS',
+    body: 'Hello from JS',
   };
 };
