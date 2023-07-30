@@ -7,10 +7,10 @@
 dist/
 
 # build-artifacts and configs
-*/.astro
-*/.husky
-*/.vercel
-*/.netlify
+.astro
+.husky
+.vercel
+.netlify
 
 # environments
 **/node_modules/
