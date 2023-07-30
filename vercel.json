@@ -3,5 +3,5 @@
   "framework": "astro",
   "regions": ["bom1"],
   "outputDirectory": "dist",
-  "rewrites": [{ "source": "/api/py/:path*", "destination": "/api" }]
+  "rewrites": [{ "source": "/api-py/:path*", "destination": "/api" }]
 }
