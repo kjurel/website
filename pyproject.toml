@@ -1,0 +1,133 @@
+[tool.poetry]
+name = "backend-fastapipy"
+version = "1.0.0"
+description = "A personal backend."
+authors = [ ]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+dev = "uvicorn main:app --host 0.0.0.0 --port 3000"
+server = "app.scripts:server"
+logs-flush = "app.scripts:flush_logs"
+run = "app.scripts:run"
+
+  [[tool.poetry.packages]]
+  include = "backend_fastapipy"
+
+  [tool.poetry.dependencies]
+  python = ">=3.9,<3.11"
+  fastapi = {extras = ["python-multipart"], version = "^0.100.1"}
+  fastapi-login = "^1.9.1"
+  tortoise-orm = {extras = ["asyncpg"], version = "^0.19.3"}
+  uvicorn = {extras = ["standard"], version = "^0.23.1"}
+
+  [tool.poetry.group.api.dependencies]
+  instagrapi = "^1.18.3"
+  praw = "^7.7.1"
+
+  [tool.poetry.group.ext.dependencies]
+  pillow = "^10.0.0"
+  moviepy = "^1.0.3"
+  scrapy = "^2.9.0"
+  scrapy-playwright = "^0.0.27"
+  
+  [tool.poetry.group.dev.dependencies]
+  yapf = "^0.40.1"
+  mypy = "^1.4.1"
+  ruff = "^0.0.280"
+  aerich = "^0.7.2"
+  bandit = "^1.7.5"
+  pre-commit = "^3.3.3"
+  pytest = "7.3.1"
+  pytest-asyncio = "^0.21.1"
+  pytest-sugar = "0.9.7"
+  pytest-cov = "4.1.0"
+  pytest-html = "3.2.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+branch = true
+source = [ "backend_fastapipy" ]
+
+[tool.coverage.report]
+exclude_lines = ["if TYPE_CHECKING:"]
+show_missing = true
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report html:'../../coverage/apps/backend-fastapipy/html' --cov-report xml:'../../coverage/apps/backend-fastapipy/coverage.xml' --html='../../reports/apps/backend-fastapipy/unittests/html/index.html' --junitxml='../../reports/apps/backend-fastapipy/unittests/junit.xml'"
+filterwarnings = ["ignore::DeprecationWarning"]
+testpaths = [
+  "tests/",
+]
+
+[tool.aerich]
+location = "./migrations"
+tortoise_orm = "app.core.init_app.TORTOISE_ORM"
+
+[tool.ruff]
+exclude = [
+  ".git",
+  "__pycache__",
+  "build",
+  "dist",
+	".tox",
+  "venv",
+	".venv",
+	".pytest_cache"
+]
+max-line-length = 120
+
+[tool.mypy]
+disable_error_code = "misc"
+disallow_untyped_calls = true
+exclude = ["_legacy.py$"]
+explicit_package_bases = true
+namespace_packages = true
+plugins = ["pydantic.mypy"]
+show_error_codes = true
+warn_unused_ignores = true
+follow_imports = "silent"
+warn_redundant_casts = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+
+# for strict mypy: (this is the tricky one :-))
+disallow_untyped_defs = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+
+[tool.yapf]
+align_closing_bracket_with_visual_indent = true
+allow_multiline_dictionary_keys = true
+allow_multiline_lambdas = true
+# allow_split_before_default_or_named_assigns
+# allow_split_before_dict_value = false
+# arithmetic_precedence_indication = false
+blank_line_before_class_docstring = false
+blank_line_before_module_docstring = false
+blank_line_before_nested_class_or_def = true
+# blank_lines_around_top_level_definition = 2
+# blank_lines_between_top_level_imports_and_variables = 2
+# coalesce_brackets = true
+# column_limit = 80
+dedent_closing_brackets = true
+each_dict_entry_on_separate_line = true
+indent_blank_lines = true
+indent_width = 2
+# indent_closing_brackets = true
+join_multiple_lines = true
+spaces_around_dict_delimiters = true
+spaces_around_list_delimiters = true
+spaces_around_tuple_delimiters = true
+spaces_before_comment = [15, 20]
+split_all_comma_separated_values = true
+split_all_top_level_comma_separated_values = true
+split_before_dot = true

@@ -1,0 +1,8 @@
+env_file = ".env.local"
+
+[env]
+# NODE_ENV = "production"
+
+[tools]
+node = "18"
+python = {version="3.10", virtualenv=".venv"}

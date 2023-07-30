@@ -1,0 +1,5 @@
+{
+  "name": "@project/instagram",
+  "main": "./main.astro",
+  "dependencies": {}
+}
