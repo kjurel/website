@@ -35,7 +35,7 @@ run = "app.scripts:run"
   [tool.poetry.group.dev.dependencies]
   yapf = "^0.40.1"
   mypy = "^1.4.1"
-  ruff = "^0.0.280"
+  ruff = "^0.0.281"
   aerich = "^0.7.2"
   bandit = "^1.7.5"
   pre-commit = "^3.3.3"
