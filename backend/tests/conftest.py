@@ -1,3 +1,8 @@
+"""Unit tests configuration module."""
+
+pytest_plugins = []
+
+
 import asyncio
 from os import environ
 
