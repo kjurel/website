@@ -39,6 +39,7 @@
     "astro-icon": "^0.8.1",
     "astro-purgecss": "^2.3.0",
     "commitizen": "^4.3.0",
+    "daisyui": "^3.5.0",
     "eslint": "^8.46.0",
     "eslint-plugin-astro": "^0.26.2",
     "eslint-plugin-jsx-a11y": "^6.7.1",
@@ -47,6 +48,7 @@
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.1",
     "prettier-plugin-tailwindcss": "^0.2.8",
+    "prettier-plugin-toml": "^0.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "vercel": "^29.4.0"
@@ -64,7 +66,9 @@
     "allowedDeprecatedVersions": {
       "@npmcli/move-file": "1.1.2",
       "rollup-plugin-inject": "3.0.2",
-      "sourcemap-codec": "1.4.8"
+      "sourcemap-codec": "1.4.8",
+      "satble": "0.1.8",
+      "vm2": "3.9.19"
     }
   },
   "lint-staged": {
@@ -86,14 +90,15 @@
     }
   },
   "prettier": {
+    "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss", "prettier-plugin-toml"],
     "printWidth": 120,
     "tabWidth": 2,
     "useTabs": false,
-    "singleQuote": true,
-    "trailingComma": "es5",
     "semi": true,
+    "singleQuote": false,
+    "trailingComma": "es5",
     "bracketSpacing": true,
-    "jsxBracketSameLine": false,
+    "bracketSameLine": false,
     "arrowParens": "always"
   }
 }
