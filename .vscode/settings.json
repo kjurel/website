@@ -26,11 +26,10 @@
     "**/.venv": true
   },
   "files.associations": {
-    ".env.local": "env",
-    "tsconfig.alter.json": "json"
+    ".env.local": "env"
   },
-  "material-icon-theme.files.associations": {
-    "tsconfig.alter.json": "tsconfig"
+  "material-icon-theme.folders.associations": {
+    "migrations": "database"
   },
 
   "python.terminal.activateEnvironment": false,
@@ -41,5 +40,4 @@
   "python.linting.mypyEnabled": true,
   "python.linting.banditEnabled": true,
   "python.testing.pytestEnabled": true,
-  "python.analysis.typeCheckingMode": "basic"
 }
