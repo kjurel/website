@@ -2,7 +2,9 @@ import typing as t
 
 from asgi_correlation_id import correlation_id
 from fastapi.exception_handlers import http_exception_handler
-from fastapi.requests import HTTPException, Request
+from fastapi.exceptions import HTTPException
+from fastapi.requests import Request
+from fastapi.responses import Response
 from starlette.responses import JSONResponse
 
 
@@ -41,7 +43,7 @@ async def on_api_exception(request: Request, exception: APIException) -> JSONRes
     return JSONResponse(content=content, status_code=exception.status_code)
 
 
-async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:
+async def unhandled_exception_handler(request: Request, exc: Exception) -> Response:
     return await http_exception_handler(
         request,
         HTTPException(

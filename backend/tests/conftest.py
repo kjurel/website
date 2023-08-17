@@ -17,29 +17,28 @@ asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 @pytest.fixture(scope="session")
 def client():
-  test_client = app_factory(True)
-  yield test_client
+    test_client = app_factory(True)
+    yield test_client
 
 
 @pytest.fixture
 async def database(tortoise):
-  yield
-  await reset_tortoise("public", False)
+    yield
+    await reset_tortoise("public", False)
 
 
 @pytest.fixture(scope="session")
 async def tortoise():
-  DATABASE_URL = environ["POSTGRES_TEST_URL"]
-  await Tortoise.init(
-      db_url=DATABASE_URL,
-      modules={ "models": settings.get_db_app_list() }
-  )
-  await reset_tortoise("public", False)
-  await Tortoise.generate_schemas()
-  yield
-  await Tortoise.close_connections()
+    DATABASE_URL = environ["POSTGRES_TEST_URL"]
+    await Tortoise.init(
+        db_url=DATABASE_URL, modules={"models": settings.get_db_app_list()}
+    )
+    await reset_tortoise("public", False)
+    await Tortoise.generate_schemas()
+    yield
+    await Tortoise.close_connections()
 
 
 @pytest.fixture(scope="session")
 def event_loop():
-  return asyncio.get_event_loop()
+    return asyncio.get_event_loop()

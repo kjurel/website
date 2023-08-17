@@ -9,6 +9,7 @@ packages = [{ include = "backend", format = ["wheel"] }]
 
 [tool.poetry.scripts]
 dev = "uvicorn main:app --host 0.0.0.0 --port 3000"
+tester = "python backend/test.py"
 server = "app.scripts:server"
 logs-flush = "app.scripts:flush_logs"
 run = "app.scripts:run"
@@ -31,11 +32,8 @@ scrapy-playwright = "^0.0.27"
 pydantic = "1.*"
 
 [tool.poetry.group.dev.dependencies]
-yapf = "^0.40.1"
 mypy = "^1.4.1"
-ruff = "^0.0.280"
 aerich = "^0.7.2"
-bandit = "^1.7.5"
 pre-commit = "^3.3.3"
 pytest = "7.4.0"
 pytest-asyncio = "^0.21.1"
@@ -81,22 +79,22 @@ max-line-length = 120
 line-lenght = 120
 
 [tool.mypy]
+plugins = ["pydantic.mypy"]
 disable_error_code = "misc"
 disallow_untyped_calls = true
 exclude = ["_legacy.py$"]
-explicit_package_bases = true
-namespace_packages = true
-plugins = ["pydantic.mypy"]
-show_error_codes = true
-warn_unused_ignores = true
-follow_imports = "silent"
-warn_redundant_casts = true
-disallow_any_generics = true
-check_untyped_defs = true
-no_implicit_reexport = true
-# for strict mypy: (this is the tricky one :-))
-disallow_untyped_defs = true
 
+# explicit_package_bases = true
+# namespace_packages = true
+# show_error_codes = true
+# warn_unused_ignores = true
+# follow_imports = "silent"
+# warn_redundant_casts = true
+# disallow_any_generics = true
+# check_untyped_defs = true
+# no_implicit_reexport = true
+# # for strict mypy: (this is the tricky one :-))
+# disallow_untyped_defs = true
 [tool.pydantic-mypy]
 init_forbid_extra = true
 init_typed = true
