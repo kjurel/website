@@ -24,11 +24,11 @@ repos:
     rev: "" # add version here
     hooks:
       - id: poetry-check
-        args: ["-C", "./backend/"]
+        args: ["-C", "."]
       - id: poetry-lock
-        args: ["-C", "./backend"]
+        args: ["-C", "."]
       - id: poetry-export
-        args: ["-C", "./backend", "-f", "requirements.txt", "-o", "./requirements.txt"]
+        args: ["-C", ".", "-f", "requirements.txt", "-o", "./requirements.txt"]
   # - repo: https://github.com/astral-sh/ruff-pre-commit
   #   rev: v0.0.280
   #   hooks:
