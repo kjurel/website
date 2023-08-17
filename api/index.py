@@ -7,10 +7,10 @@ app = FastAPI()
 
 
 @app.get("/api")
-def hello_world1():
+def hello_world():
     return {"message": "Working!!"}
 
 
-# @app.get("/api/py")
-# def hello_world():
-#     return {"message": "Hello World from Python"}
+@app.get("/api/py")
+def hello_world_py():
+    return {"message": "Hello World from Python"}

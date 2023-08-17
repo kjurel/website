@@ -9,5 +9,5 @@
   "regions": ["bom1"],
   "trailingSlash": false,
   "outputDirectory": ".vercel/",
-  "rewrites": [{ "source": "/backend/:path*", "destination": "/api/:path*" }]
+  "rewrites": [{ "source": "/api/:path*", "destination": "/api" }]
 }
