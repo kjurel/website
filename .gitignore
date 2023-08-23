@@ -19,7 +19,13 @@ dist/
 
 # macOS-specific files
 .DS_Store
+*.pem
 
+# turbo
+.turbo
+
+# vercel
+.vercel
 # -------------------------------------------
 
 # Logs

@@ -1,7 +1,9 @@
-# Add files here to ignore them from prettier formatting
-/dist
-/coverage
-/node_modules
-/build
-*.log
-*.tmp
+.next/
+out/
+build/
+dist/
+node_modules/
+public/
+storybook-static/
+.coverage/
+.turbo/

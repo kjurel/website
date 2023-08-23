@@ -8,7 +8,7 @@ authors = []
 packages = [{ include = "backend", format = ["wheel"] }]
 
 [tool.poetry.scripts]
-dev = "uvicorn main:app --host 0.0.0.0 --port 3000"
+dev = "uvicorn backend.main:app --host 0.0.0.0 --port 3000"
 tester = "python backend/test.py"
 server = "app.scripts:server"
 logs-flush = "app.scripts:flush_logs"

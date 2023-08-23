@@ -1,0 +1,6 @@
+{
+  "name": "@apps/backend",
+  "scripts": {
+    "py-reqs": "poetry export --without-hashes > requirements.txt"
+  }
+}

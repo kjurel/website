@@ -1,58 +1,35 @@
 {
   "name": "website",
-  "type": "module",
-  "scripts": {
-    "astro": "astro",
-    "build": "astro build",
-    "dev": "pnpm astro dev --host",
-    "dnm": "find . -type d -name node_modules -prune -exec rm -rf {} \\;",
-    "upd": "pnpm --recursive update",
-    "py-rqs": "poetry export --without-hashes --format=requirements.txt > requirements.txt"
-  },
   "private": true,
-  "dependencies": {
-    "@astrojs/solid-js": "^2.2.0",
-    "@astrojs/tailwind": "^4.0.0",
-    "@astrojs/vercel": "^3.7.4",
-    "@nanostores/solid": "^0.3.2",
-    "@project/instagram": "workspace:^",
-    "@project/streamer": "workspace:^",
-    "@supabase/supabase-js": "^2.31.0",
-    "@website/server": "workspace:^",
-    "astro": "^2.9.6",
-    "nanostores": "^0.8.1",
-    "solid-js": "^1.7.8",
-    "tailwindcss": "^3.0.24",
-    "zod": "^3.21.4"
+  "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "dev": "turbo run dev --no-cache --parallel --continue",
+    "lint": "TIMING=1 eslint \"**/*.{ts,tsx}\"",
+    "lint:ci": "pnpm run lint",
+    "build": "turbo run build",
+    "build:ci": "turbo run build:ci",
+    "test": "turbo run test --concurrecy=1",
+    "ci": "pnpm lint:ci && pnpm build:ci && pnpm test:ci",
+    "format": "prettier --write \"**/*.{astro,js,jsx,ts,tsx,css,scss,md,mdx,yml,yaml,xml,toml,json}\"",
+    "custom:dnm": "find . -type d -name node_modules -prune -exec rm -rf {} \\;",
+    "custom:upd": "pnpm --recursive update"
   },
   "devDependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/partytown": "^1.2.3",
-    "@astrojs/ts-plugin": "^0.4.5",
-    "@changesets/cli": "^2.26.2",
-    "@commitlint/cli": "^17.6.7",
-    "@commitlint/config-conventional": "^17.6.7",
-    "@commitlint/config-nx-scopes": "^17.6.4",
-    "@commitlint/cz-commitlint": "^17.6.7",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
-    "astro-icon": "^0.8.1",
-    "astro-purgecss": "^2.3.0",
-    "commitizen": "^4.3.0",
-    "daisyui": "^3.5.0",
-    "eslint": "^8.46.0",
-    "eslint-plugin-astro": "^0.26.2",
-    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "@packages/preset-commitlint": "workspace:^",
+    "@packages/preset-eslint": "workspace:^",
+    "@packages/preset-prettier": "workspace:^",
+    "@packages/preset-ts": "workspace:^",
+    "@turbo/gen": "^1.10.12",
     "husky": "^8.0.3",
-    "lint-staged": "^13.2.3",
-    "prettier": "^2.8.8",
-    "prettier-plugin-astro": "^0.8.1",
-    "prettier-plugin-tailwindcss": "^0.2.8",
-    "prettier-plugin-toml": "^0.3.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.1.6",
+    "lint-staged": "^13.3.0",
+    "turbo": "latest",
     "vercel": "^29.4.0"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "packageManager": "pnpm@8.6.10",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
@@ -67,9 +44,13 @@
       "@npmcli/move-file": "1.1.2",
       "rollup-plugin-inject": "3.0.2",
       "sourcemap-codec": "1.4.8",
-      "satble": "0.1.8",
+      "stable": "0.1.8",
       "vm2": "3.9.19"
     }
+  },
+  "prettier": "@packages/preset-prettier/index.prettierrc.js",
+  "eslintConfig": {
+    "extends": "@packages/preset-eslint/index.eslintrc.js"
   },
   "lint-staged": {
     "{packages,tools}/**/*.{js,json,css,scss,md,ts,html,graphql}": [
@@ -77,28 +58,5 @@
       "nx affected --target lint --uncommitted",
       "nx format:write --uncommited"
     ]
-  },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional",
-      "@commitlint/config-nx-scopes"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
-  },
-  "prettier": {
-    "plugins": ["prettier-plugin-astro", "prettier-plugin-tailwindcss", "prettier-plugin-toml"],
-    "printWidth": 120,
-    "tabWidth": 2,
-    "useTabs": false,
-    "semi": true,
-    "singleQuote": false,
-    "trailingComma": "es5",
-    "bracketSpacing": true,
-    "bracketSameLine": false,
-    "arrowParens": "always"
   }
 }

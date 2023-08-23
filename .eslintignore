@@ -1,0 +1,9 @@
+node_modules
+dist
+.turbo
+.yarn
+.vscode
+.devcontainer
+.github
+.husky
+public
