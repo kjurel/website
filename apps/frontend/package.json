@@ -26,7 +26,10 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@julr/vite-plugin-validate-env": "^0.2.4",
     "@packages/preset-eslint": "workspace:^",
-    "@packages/preset-ts": "workspace:^"
+    "@packages/preset-ts": "workspace:^",
+    "vite-plugin-qrcode": "^0.2.2",
+    "vite-tsconfig-paths": "^4.2.0"
   }
 }

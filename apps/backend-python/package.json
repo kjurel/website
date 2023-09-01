@@ -1,0 +1,8 @@
+{
+  "name": "@apps/backend-python",
+  "scripts": {
+    "install": "poetry install",
+    "update": "poetry update",
+    "lock": "poetry export --without-hashes > requirements.txt"
+  }
+}

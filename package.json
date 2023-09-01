@@ -48,10 +48,13 @@
       "vm2": "3.9.19"
     }
   },
-  "prettier": "@packages/preset-prettier/index.prettierrc.js",
+  "commitlint": {
+    "extends": "@packages/preset-commitlint/index.commitlint.js"
+  },
   "eslintConfig": {
     "extends": "@packages/preset-eslint/index.eslintrc.js"
   },
+  "prettier": "@packages/preset-prettier/index.prettierrc.js",
   "lint-staged": {
     "{packages,tools}/**/*.{js,json,css,scss,md,ts,html,graphql}": [
       "nx affected --target lint --uncommitted --fix true",
