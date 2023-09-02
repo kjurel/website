@@ -1,3 +1,14 @@
 {
-  "extends": "./tsconfig.solidjs.json"
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Astro-SolidJS Library",
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "jsx": "preserve",
+    "jsxImportSource": "solid-js",
+    "lib": ["ES2015"],
+    "module": "ESNext",
+    "paths": { "@project/*": ["src/projects/*"] },
+    "target": "es6"
+  }
 }
