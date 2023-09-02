@@ -2,7 +2,7 @@ from fastapi import FastAPI
 
 import backendPython
 
-app = FastAPI(prefix="/api/python")
+app = FastAPI(root_path="/api/python")
 
 
 @app.get("/")
