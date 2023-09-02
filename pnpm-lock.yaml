@@ -4,128 +4,123 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-importers:
+dependencies:
+  '@astrojs/mdx':
+    specifier: ^0.19.7
+    version: 0.19.7(astro@2.10.12)
+  '@astrojs/partytown':
+    specifier: ^1.2.3
+    version: 1.2.3
+  '@astrojs/solid-js':
+    specifier: ^2.2.1
+    version: 2.2.1(@babel/core@7.22.10)(solid-js@1.7.11)
+  '@astrojs/tailwind':
+    specifier: ^4.0.0
+    version: 4.0.0(astro@2.10.12)(tailwindcss@3.3.3)(ts-node@10.9.1)
+  '@astrojs/vercel':
+    specifier: ^3.8.2
+    version: 3.8.2(astro@2.10.12)
+  '@nanostores/solid':
+    specifier: ^0.4.2
+    version: 0.4.2(nanostores@0.8.1)(solid-js@1.7.11)
+  '@supabase/supabase-js':
+    specifier: ^2.33.1
+    version: 2.33.1
+  astro:
+    specifier: ^2.10.12
+    version: 2.10.12(@types/node@14.18.33)
+  astro-icon:
+    specifier: ^0.8.1
+    version: 0.8.1
+  astro-purgecss:
+    specifier: ^2.3.0
+    version: 2.3.0(astro@2.10.12)
+  nanostores:
+    specifier: ^0.8.1
+    version: 0.8.1
+  solid-js:
+    specifier: ^1.7.11
+    version: 1.7.11
+  tailwindcss:
+    specifier: ^3.3.3
+    version: 3.3.3(ts-node@10.9.1)
+  zod:
+    specifier: ^3.22.2
+    version: 3.22.2
 
-  .:
-    dependencies:
-      '@astrojs/mdx':
-        specifier: ^0.19.7
-        version: 0.19.7(astro@2.10.12)
-      '@astrojs/partytown':
-        specifier: ^1.2.3
-        version: 1.2.3
-      '@astrojs/solid-js':
-        specifier: ^2.2.1
-        version: 2.2.1(@babel/core@7.22.10)(solid-js@1.7.11)
-      '@astrojs/tailwind':
-        specifier: ^4.0.0
-        version: 4.0.0(astro@2.10.12)(tailwindcss@3.3.3)(ts-node@10.9.1)
-      '@astrojs/vercel':
-        specifier: ^3.8.2
-        version: 3.8.2(astro@2.10.12)
-      '@nanostores/solid':
-        specifier: ^0.4.2
-        version: 0.4.2(nanostores@0.8.1)(solid-js@1.7.11)
-      '@supabase/supabase-js':
-        specifier: ^2.33.1
-        version: 2.33.1
-      astro:
-        specifier: ^2.10.12
-        version: 2.10.12(@types/node@14.18.33)
-      astro-icon:
-        specifier: ^0.8.1
-        version: 0.8.1
-      astro-purgecss:
-        specifier: ^2.3.0
-        version: 2.3.0(astro@2.10.12)
-      nanostores:
-        specifier: ^0.8.1
-        version: 0.8.1
-      solid-js:
-        specifier: ^1.7.11
-        version: 1.7.11
-      tailwindcss:
-        specifier: ^3.3.3
-        version: 3.3.3(ts-node@10.9.1)
-      zod:
-        specifier: ^3.22.2
-        version: 3.22.2
-    devDependencies:
-      '@astrojs/ts-plugin':
-        specifier: ^0.4.5
-        version: 0.4.5
-      '@changesets/cli':
-        specifier: ^2.26.2
-        version: 2.26.2
-      '@commitlint/cli':
-        specifier: ^17.7.1
-        version: 17.7.1
-      '@commitlint/config-conventional':
-        specifier: ^17.7.0
-        version: 17.7.0
-      '@commitlint/cz-commitlint':
-        specifier: ^17.7.1
-        version: 17.7.1(commitizen@4.3.0)(inquirer@8.2.6)
-      '@julr/vite-plugin-validate-env':
-        specifier: ^0.2.4
-        version: 0.2.4(zod@3.22.2)
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^5.62.0
-        version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.47.0)(typescript@4.8.4)
-      '@typescript-eslint/parser':
-        specifier: ^5.62.0
-        version: 5.62.0(eslint@8.47.0)(typescript@4.8.4)
-      commitizen:
-        specifier: ^4.3.0
-        version: 4.3.0
-      eslint:
-        specifier: ^8.47.0
-        version: 8.47.0
-      eslint-config-prettier:
-        specifier: 8.5.0
-        version: 8.5.0(eslint@8.47.0)
-      eslint-config-turbo:
-        specifier: ^0.0.4
-        version: 0.0.4(eslint@8.47.0)
-      eslint-plugin-astro:
-        specifier: ^0.26.2
-        version: 0.26.2(eslint@8.47.0)
-      eslint-plugin-jsx-a11y:
-        specifier: ^6.7.1
-        version: 6.7.1(eslint@8.47.0)
-      eslint-plugin-solid:
-        specifier: ^0.8.0
-        version: 0.8.0(eslint@8.47.0)(typescript@4.8.4)
-      husky:
-        specifier: ^8.0.3
-        version: 8.0.3
-      lint-staged:
-        specifier: ^13.3.0
-        version: 13.3.0
-      prettier:
-        specifier: ^2.8.8
-        version: 2.8.8
-      prettier-plugin-astro:
-        specifier: ^0.8.1
-        version: 0.8.1
-      prettier-plugin-tailwindcss:
-        specifier: ^0.2.8
-        version: 0.2.8(prettier-plugin-astro@0.8.1)(prettier@2.8.8)
-      prettier-plugin-toml:
-        specifier: ^0.3.5
-        version: 0.3.5
-      typescript:
-        specifier: 4.8.4
-        version: 4.8.4
-      vercel:
-        specifier: ^29.4.0
-        version: 29.4.0(@types/node@14.18.33)(ts-node@10.9.1)
-      vite-plugin-qrcode:
-        specifier: ^0.2.2
-        version: 0.2.2
-      vite-tsconfig-paths:
-        specifier: ^4.2.0
-        version: 4.2.0(typescript@4.8.4)
+devDependencies:
+  '@astrojs/ts-plugin':
+    specifier: ^0.4.5
+    version: 0.4.5
+  '@changesets/cli':
+    specifier: ^2.26.2
+    version: 2.26.2
+  '@commitlint/cli':
+    specifier: ^17.7.1
+    version: 17.7.1
+  '@commitlint/config-conventional':
+    specifier: ^17.7.0
+    version: 17.7.0
+  '@commitlint/cz-commitlint':
+    specifier: ^17.7.1
+    version: 17.7.1(commitizen@4.3.0)(inquirer@8.2.6)
+  '@julr/vite-plugin-validate-env':
+    specifier: ^0.2.4
+    version: 0.2.4(zod@3.22.2)
+  '@typescript-eslint/eslint-plugin':
+    specifier: ^5.62.0
+    version: 5.62.0(@typescript-eslint/parser@5.62.0)(eslint@8.47.0)(typescript@4.8.4)
+  '@typescript-eslint/parser':
+    specifier: ^5.62.0
+    version: 5.62.0(eslint@8.47.0)(typescript@4.8.4)
+  commitizen:
+    specifier: ^4.3.0
+    version: 4.3.0
+  eslint:
+    specifier: ^8.47.0
+    version: 8.47.0
+  eslint-config-prettier:
+    specifier: 8.5.0
+    version: 8.5.0(eslint@8.47.0)
+  eslint-plugin-astro:
+    specifier: ^0.26.2
+    version: 0.26.2(eslint@8.47.0)
+  eslint-plugin-jsx-a11y:
+    specifier: ^6.7.1
+    version: 6.7.1(eslint@8.47.0)
+  eslint-plugin-solid:
+    specifier: ^0.8.0
+    version: 0.8.0(eslint@8.47.0)(typescript@4.8.4)
+  husky:
+    specifier: ^8.0.3
+    version: 8.0.3
+  lint-staged:
+    specifier: ^13.3.0
+    version: 13.3.0
+  prettier:
+    specifier: ^2.8.8
+    version: 2.8.8
+  prettier-plugin-astro:
+    specifier: ^0.8.1
+    version: 0.8.1
+  prettier-plugin-tailwindcss:
+    specifier: ^0.2.8
+    version: 0.2.8(prettier-plugin-astro@0.8.1)(prettier@2.8.8)
+  prettier-plugin-toml:
+    specifier: ^0.3.5
+    version: 0.3.5
+  typescript:
+    specifier: 4.8.4
+    version: 4.8.4
+  vercel:
+    specifier: ^29.4.0
+    version: 29.4.0(@types/node@14.18.33)(ts-node@10.9.1)
+  vite-plugin-qrcode:
+    specifier: ^0.2.2
+    version: 0.2.2
+  vite-tsconfig-paths:
+    specifier: ^4.2.0
+    version: 4.2.0(typescript@4.8.4)
 
 packages:
 
@@ -5596,15 +5591,6 @@ packages:
       eslint: 8.47.0
     dev: true
 
-  /eslint-config-turbo@0.0.4(eslint@8.47.0):
-    resolution: {integrity: sha512-HErPS/wfWkSdV9Yd2dDkhZt3W2B78Ih/aWPFfaHmCMjzPalh+5KxRRGTf8MOBQLCebcWJX0lP1Zvc1rZIHlXGg==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0
-    dependencies:
-      eslint: 8.47.0
-      eslint-plugin-turbo: 0.0.4(eslint@8.47.0)
-    dev: true
-
   /eslint-plugin-astro@0.26.2(eslint@8.47.0):
     resolution: {integrity: sha512-unST3JZO+W8Beoxfyu6Gpgbx9KAZJ3QBBT7SLzeB5kUbuSrJ40uzYbdsE4wgkZWyiAHkvjAAvQzDP9vH6Dk2eg==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -5663,14 +5649,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: true
-
-  /eslint-plugin-turbo@0.0.4(eslint@8.47.0):
-    resolution: {integrity: sha512-dfmYE/iPvoJInQq+5E/0mj140y/rYwKtzZkn3uVK8+nvwC5zmWKQ6ehMWrL4bYBkGzSgpOndZM+jOXhPQ2m8Cg==}
-    peerDependencies:
-      eslint: ^7.23.0 || ^8.0.0
-    dependencies:
-      eslint: 8.47.0
     dev: true
 
   /eslint-scope@5.1.1:
