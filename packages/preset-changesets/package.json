@@ -1,9 +1,0 @@
-{
-  "name": "@packages/preset-changesets",
-  "version": "0.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "dependencies": {
-    "@changesets/cli": "^2.26.2"
-  }
-}

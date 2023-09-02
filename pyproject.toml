@@ -1,45 +1,23 @@
 [tool.poetry]
-name = "backend"
-version = "0.0.0"
+name = "backendpython"
+version = "0.0.1"
 description = "A personal backend."
 license = "MIT"
 readme = "README.md"
 authors = []
-packages = [{ include = "backend", format = ["wheel"] }]
+packages = [{ include = "backendpython", format = ["wheel"] }]
 
 [tool.poetry.scripts]
-dev = "uvicorn backend.main:app --host 0.0.0.0 --port 3000"
-tester = "python backend/test.py"
-server = "app.scripts:server"
-logs-flush = "app.scripts:flush_logs"
-run = "app.scripts:run"
 
+# dev = "uvicorn backend_python.main:app --host 0.0.0.0 --port 3000"
+# tester = "python backend/test.py"
+# server = "app.scripts:server"
+# logs-flush = "app.scripts:flush_logs"
+# run = "app.scripts:run"
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 fastapi = { extras = ["python-multipart"], version = "0.95.2" }
 tortoise-orm = { extras = ["asyncpg"], version = "^0.19.3" }
-uvicorn = { extras = ["standard"], version = "^0.23.1" }
-
-[tool.poetry.group.api.dependencies]
-instagrapi = "^1.18.5"
-praw = "^7.7.1"
-
-[tool.poetry.group.ext.dependencies]
-pillow = "^10.0.0"
-moviepy = "^1.0.3"
-scrapy = "^2.9.0"
-scrapy-playwright = "^0.0.27"
-pydantic = "1.*"
-
-[tool.poetry.group.dev.dependencies]
-mypy = "^1.4.1"
-aerich = "^0.7.2"
-pre-commit = "^3.3.3"
-pytest = "7.4.0"
-pytest-asyncio = "^0.21.1"
-pytest-sugar = "0.9.7"
-pytest-cov = "4.1.0"
-pytest-html = "3.2.0"
 
 [tool.poetry.group.fastapi-extensions.dependencies]
 slowapi = "^0.1.8"
@@ -50,6 +28,21 @@ fastapi-mail = { version = "1.3.*", extras = ["httpx"] }
 fastapi-utils = "^0.2.1"
 fastapi-profiler = "^1.2.0"
 fastapi-class = "^3.3.0"
+
+[tool.poetry.group.api.dependencies]
+instagrapi = "^1.18.5"
+praw = "^7.7.1"
+
+[tool.poetry.group.dev.dependencies]
+aerich = "^0.7.2"
+mypy = "^1.4.1"
+pre-commit = "^3.3.3"
+pytest = "7.4.0"
+pytest-asyncio = "^0.21.1"
+pytest-cov = "4.1.0"
+pytest-html = "3.2.0"
+pytest-sugar = "0.9.7"
+uvicorn = { extras = ["standard"], version = "^0.23.1" }
 
 [build-system]
 requires = ["poetry-core"]

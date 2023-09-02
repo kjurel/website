@@ -5,4 +5,4 @@ env_file = ".env.local"
 # NODE_ENV = "production"
 [tools]
 node = "18"
-python = { version = "3.10", virtualenv = "apps/backend/.venv" }
+python = { version = "3.10", virtualenv = ".venv" }

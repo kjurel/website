@@ -15,16 +15,48 @@
     "custom:dnm": "find . -type d -name node_modules -prune -exec rm -rf {} \\;",
     "custom:upd": "pnpm --recursive update"
   },
+  "dependencies": {
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/partytown": "^1.2.3",
+    "@astrojs/solid-js": "^2.2.1",
+    "@astrojs/tailwind": "^4.0.0",
+    "@astrojs/vercel": "^3.8.2",
+    "@nanostores/solid": "^0.4.2",
+    "@supabase/supabase-js": "^2.33.1",
+    "astro": "^2.10.12",
+    "astro-icon": "^0.8.1",
+    "astro-purgecss": "^2.3.0",
+    "nanostores": "^0.8.1",
+    "solid-js": "^1.7.11",
+    "tailwindcss": "^3.3.3",
+    "zod": "^3.22.2"
+  },
   "devDependencies": {
-    "@packages/preset-commitlint": "workspace:^",
-    "@packages/preset-eslint": "workspace:^",
-    "@packages/preset-prettier": "workspace:^",
-    "@packages/preset-ts": "workspace:^",
-    "@turbo/gen": "^1.10.12",
+    "@astrojs/ts-plugin": "^0.4.5",
+    "@changesets/cli": "^2.26.2",
+    "@commitlint/cli": "^17.7.1",
+    "@commitlint/config-conventional": "^17.7.0",
+    "@commitlint/cz-commitlint": "^17.7.1",
+    "@julr/vite-plugin-validate-env": "^0.2.4",
+    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "commitizen": "^4.3.0",
+    "eslint": "^8.47.0",
+    "eslint-config-prettier": "8.5.0",
+    "eslint-config-turbo": "^0.0.4",
+    "eslint-plugin-astro": "^0.26.2",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-solid": "^0.8.0",
     "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
-    "turbo": "latest",
-    "vercel": "^29.4.0"
+    "prettier": "^2.8.8",
+    "prettier-plugin-astro": "^0.8.1",
+    "prettier-plugin-tailwindcss": "^0.2.8",
+    "prettier-plugin-toml": "^0.3.5",
+    "typescript": "4.8.4",
+    "vercel": "^29.4.0",
+    "vite-plugin-qrcode": "^0.2.2",
+    "vite-tsconfig-paths": "^4.2.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -48,18 +80,88 @@
       "vm2": "3.9.19"
     }
   },
-  "commitlint": {
-    "extends": "@packages/preset-commitlint/index.commitlint.js"
-  },
   "eslintConfig": {
-    "extends": "@packages/preset-eslint/index.eslintrc.js"
+    "env": {
+      "es2021": true
+    },
+    "extends": [
+      "turbo",
+      "prettier",
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:astro/recommended",
+      "plugin:astro/jsx-a11y-recommended",
+      "plugin:solid/recommended"
+    ],
+    "overrides": [
+      {
+        "files": [
+          "*.astro"
+        ],
+        "parser": "astro-eslint-parser",
+        "parserOptions": {
+          "parser": "@typescript-eslint/parser",
+          "extraFileExtensions": [
+            ".astro"
+          ]
+        },
+        "rules": {
+          "astro/no-set-html-directive": "error"
+        }
+      }
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "solid"
+    ],
+    "rules": {
+      "@typescript-eslint/no-explicit-any": 0
+    }
   },
-  "prettier": "@packages/preset-prettier/index.prettierrc.js",
+  "eslintIgnore": [
+    "node_modules",
+    "dist",
+    ".turbo",
+    ".github",
+    ".husky",
+    "public"
+  ],
+  "prettier": {
+    "plugins": [
+      "prettier-plugin-astro",
+      "prettier-plugin-tailwindcss",
+      "prettier-plugin-toml"
+    ],
+    "printWidth": 120,
+    "tabWidth": 2,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": false,
+    "trailingComma": "es5",
+    "bracketSpacing": true,
+    "bracketSameLine": false,
+    "arrowParens": "always"
+  },
   "lint-staged": {
     "{packages,tools}/**/*.{js,json,css,scss,md,ts,html,graphql}": [
       "nx affected --target lint --uncommitted --fix true",
       "nx affected --target lint --uncommitted",
       "nx format:write --uncommited"
     ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }
