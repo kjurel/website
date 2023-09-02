@@ -2,9 +2,9 @@ from fastapi import FastAPI
 
 import backendPython
 
-app = FastAPI(root_path="/api/python")
+app = FastAPI()
 
 
-@app.get("/")
+@app.get("/api/python")
 def hello_world1():
     return {"message": "Working!!"}
