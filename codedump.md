@@ -1,6 +1,6 @@
 <details>
   <summary>applications/instagram/routers - post routes</summary>
-  
+
   ```python
     @postRouter.head("/")
     async def head_post(postid: int = None, preset: str = None, user: User = Depends(TokenAuth)):
