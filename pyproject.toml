@@ -17,7 +17,7 @@ packages = [{ include = "backendPython", format = ["wheel"] }]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 fastapi = { extras = ["python-multipart"], version = "0.95.2" }
-tortoise-orm = { extras = ["asyncpg"], version = "^0.19.3" }
+tortoise-orm = { extras = ["asyncpg"], version = "^0.20.0" }
 
 [tool.poetry.group.fastapi-extensions.dependencies]
 slowapi = "^0.1.8"
