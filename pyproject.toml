@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "backendpython"
+name = "backendPython"
 version = "0.0.1"
 description = "A personal backend."
 license = "MIT"
 readme = "README.md"
 authors = []
-packages = [{ include = "backendpython", format = ["wheel"] }]
+packages = [{ include = "backendPython", format = ["wheel"] }]
 
 [tool.poetry.scripts]
 
