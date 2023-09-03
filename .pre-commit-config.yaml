@@ -29,8 +29,17 @@ repos:
       #   verbose: true
       - id: poetry-lock
       - id: poetry-export
-        args: ["-f", "requirements.txt", "-o", "./requirements.txt", "--without-hashes"]
-        verbose: true
+        args: ["--without-hashes", "-f", "requirements.txt", "-o", "./requirements.txt"]
+
+  - repo: local
+    hooks:
+      - id: add-dot-to-requirements.txt
+        name: add-dot-to-requirements
+        entry: bash -c '[ "$(tail -c 1 ./requirements.txt)" = "." ] && echo "." >> ./requirements.txt || exit 0'
+        language: system
+        types:
+          - text
+        pass_filenames: false
 
   # - repo: https://github.com/astral-sh/ruff-pre-commit
   #   rev: v0.0.280

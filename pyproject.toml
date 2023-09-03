@@ -1,22 +1,14 @@
 [tool.poetry]
-name = "backendPython"
-version = "0.0.1"
-description = "A personal backend."
-license = "MIT"
+name = "backend-python"
+version = "0.1.0"
+description = "a python backend"
+authors = ["tokcide <89933773+tokcide@users.noreply.github.com>"]
 readme = "README.md"
-authors = []
-packages = [{ include = "backendPython", format = ["wheel"] }]
+packages = [{ include = "backend_python", from = "packages" }]
 
-[tool.poetry.scripts]
-
-# dev = "uvicorn backend_python.main:app --host 0.0.0.0 --port 3000"
-# tester = "python backend/test.py"
-# server = "app.scripts:server"
-# logs-flush = "app.scripts:flush_logs"
-# run = "app.scripts:run"
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
-fastapi = { extras = ["python-multipart"], version = "0.95.2" }
+fastapi = "^0.95.2"
 tortoise-orm = { extras = ["asyncpg"], version = "^0.20.0" }
 
 [tool.poetry.group.fastapi-extensions.dependencies]
@@ -36,12 +28,11 @@ praw = "^7.7.1"
 [tool.poetry.group.dev.dependencies]
 aerich = "^0.7.2"
 mypy = "^1.4.1"
-pre-commit = "^3.3.3"
 pytest = "7.4.0"
 pytest-asyncio = "^0.21.1"
 pytest-cov = "4.1.0"
-pytest-html = "4.0.0"
 pytest-sugar = "0.9.7"
+pre-commit = "^3.3.3"
 uvicorn = { extras = ["standard"], version = "^0.23.1" }
 
 [build-system]
@@ -67,8 +58,8 @@ tortoise_orm = "app.core.init_app.TORTOISE_ORM"
 
 [tool.ruff]
 exclude = [".git", "__pycache__", "build", "dist", ".tox", "venv", ".venv", ".pytest_cache"]
-max-line-length = 120
 
+# max-line-length = 120
 [tool.black]
 line-lenght = 120
 
