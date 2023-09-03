@@ -33,6 +33,17 @@ repos:
 
   - repo: local
     hooks:
+      - id: pnpm-check
+        name: pnpm-check
+        language: system
+        entry: bash -c 'pnpm doctor'
+      - id: pnpm-lock
+        name: pnpm-lock
+        language: system
+        entry: bash -c 'pnpm install --lockfile-only'
+
+  - repo: local
+    hooks:
       - id: add-dot-to-requirements.txt
         name: add-dot-to-requirements
         entry: bash -c '[ "$(tail -c 1 ./requirements.txt)" = "." ] && echo "." >> ./requirements.txt || exit 0'
