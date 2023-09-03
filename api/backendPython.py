@@ -1,10 +1,3 @@
-from fastapi import FastAPI
+from backendPython.core.init_app import app_factory
 
-import backendPython
-
-app = FastAPI(docs_url="/api/python/docs", openapi_url="/api/python/openapi.json")
-
-
-@app.get("/api/python")
-def hello_world1():
-    return {"message": "Working!!"}
+app = app_factory()

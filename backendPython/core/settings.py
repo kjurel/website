@@ -27,7 +27,7 @@ class Settings(pydantic.BaseSettings):
     DEBUG = True
     # AppSettings
     SERVER_HOST = "localhost"
-    API_ENDPOINT = "/api/py"
+    API_ENDPOINT = "/api/python"
     MODULE_ENDPOINT = API_ENDPOINT + "/{}"
     TOKEN_URL = MODULE_ENDPOINT + "/access-token"
 
@@ -135,10 +135,10 @@ DEFAULT_LOGGING = {
     "disable_existing_loggers": False,
     "filters": {
         "require_debug_false": {
-            "()": "backend.core.settings.RequireDebugFalse",
+            "()": "backendPython.core.settings.RequireDebugFalse",
         },
         "require_debug_true": {
-            "()": "backend.core.settings.RequireDebugTrue",
+            "()": "backendPython.core.settings.RequireDebugTrue",
         },
         # "correlation_id": {
         #     "()": "asgi_correlation_id.CorrelationIdFilter",
