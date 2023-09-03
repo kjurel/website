@@ -7,8 +7,6 @@
     "astro": "astro",
     "build": "astro build",
     "preview": "astro preview",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged",
     "lint": "TIMING=1 eslint \"**/*.{ts,tsx}\"",
     "lint:ci": "pnpm run lint",
     "test": "turbo run test --concurrecy=1",
@@ -49,7 +47,6 @@
     "eslint-plugin-astro": "^0.26.2",
     "eslint-plugin-jsx-a11y": "^6.7.1",
     "eslint-plugin-solid": "^0.8.0",
-    "husky": "^8.0.3",
     "lint-staged": "^13.3.0",
     "prettier": "^2.8.8",
     "prettier-plugin-astro": "^0.8.1",
@@ -84,7 +81,6 @@
       "es2021": true
     },
     "extends": [
-      "turbo",
       "prettier",
       "eslint:recommended",
       "plugin:@typescript-eslint/recommended",
@@ -147,10 +143,12 @@
     "arrowParens": "always"
   },
   "lint-staged": {
-    "{packages,tools}/**/*.{js,json,css,scss,md,ts,html,graphql}": [
-      "nx affected --target lint --uncommitted --fix true",
-      "nx affected --target lint --uncommitted",
-      "nx format:write --uncommited"
+    "*.{js,jsx,ts,tsx,json,css,scss}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{html,css,less,ejs}": [
+      "prettier --write"
     ]
   },
   "commitlint": {
