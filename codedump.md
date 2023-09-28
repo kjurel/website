@@ -1,112 +1,113 @@
 <details>
   <summary>applications/instagram/routers - post routes</summary>
 
-  ```python
-    @postRouter.head("/")
-    async def head_post(postid: int = None, preset: str = None, user: User = Depends(TokenAuth)):
-        if preset: post = await user.get_post(preset=preset, status=Post.Status.UNBUILT)
-        elif postid: post = await user.get_post(id=postid)
-        else: raise HTTPException(status.HTTP_400_BAD_REQUEST)
-        if post is None: raise HTTPException(status.HTTP_404_NOT_FOUND)
+```python
+  @postRouter.head("/")
+  async def head_post(postid: int = None, preset: str = None, user: User = Depends(TokenAuth)):
+      if preset: post = await user.get_post(preset=preset, status=Post.Status.UNBUILT)
+      elif postid: post = await user.get_post(id=postid)
+      else: raise HTTPException(status.HTTP_400_BAD_REQUEST)
+      if post is None: raise HTTPException(status.HTTP_404_NOT_FOUND)
 
-        match post.status:
-            case Post.Status.UNBUILT:
-                await post.build_withBuilder()
-                return f"Build post {post.id}"
-            case Post.Status.WAITING:
-                session = user.login()
-                lk = await user.post(session, post.id)
-                return f"Posted at {lk}"
-            case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
-
-
-    @postRouter.get("/", responses={200: {"content": {"image/jpeg": {}}}}, response_class=Response)
-    async def get_post(preset: str = None, postid: int = None, user: User = Depends(TokenAuth)):
-        if preset: post = await user.get_post(preset=preset)
-        elif postid: post = await user.get_post(id=postid)
-        else: raise HTTPException(status.HTTP_400_BAD_REQUEST)
-        if post is None: raise HTTPException(status.HTTP_404_NOT_FOUND)
-        return Response(content=await post.show(), media_type="image/jpeg")
+      match post.status:
+          case Post.Status.UNBUILT:
+              await post.build_withBuilder()
+              return f"Build post {post.id}"
+          case Post.Status.WAITING:
+              session = user.login()
+              lk = await user.post(session, post.id)
+              return f"Posted at {lk}"
+          case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
 
 
-    @postRouter.post("/")
-    async def create_post(
-        files: list[UploadFile] = File(...),
-        caption: str | None = Form(None),
-        kwargs: dict[str, int | str | list[str]] | None = Form(None),
-        preset: str = Form(...),
-        engine: int = Form(...),
-        thumbnail: UploadFile | None = File(None),
-        disable_likes: bool = Form(True),
-        user: User = Depends(TokenAuth),
-    ):
-
-        post = Post(
-            user=user,
-            rawcontent_files=[await f.read() for f in files],
-            rawcontent_types=[f.content_type for f in files],
-        )
-        if caption: post.rawcaption = caption
-        if kwargs: post.rawkwargs = kwargs
-        post.preset, post.engine = preset, engine
-        if thumbnail: post.thumbnail = await thumbnail.read()
-        post.disable_likes = disable_likes
-        post.status = Post.Status.UNBUILT.value
-        await post.save()
-        return await POST_PYDANTIC.from_tortoise_orm(post)
+  @postRouter.get("/", responses={200: {"content": {"image/jpeg": {}}}}, response_class=Response)
+  async def get_post(preset: str = None, postid: int = None, user: User = Depends(TokenAuth)):
+      if preset: post = await user.get_post(preset=preset)
+      elif postid: post = await user.get_post(id=postid)
+      else: raise HTTPException(status.HTTP_400_BAD_REQUEST)
+      if post is None: raise HTTPException(status.HTTP_404_NOT_FOUND)
+      return Response(content=await post.show(), media_type="image/jpeg")
 
 
-    @postRouter.patch("/")
-    async def update_post(
-        postid: int,
-        caption: str | None = Form(None),
-        kwargs: str | None = Form(None),
-        preset: str | None = Form(None),
-        engine: int | None = Form(None),
-        thumbnail: UploadFile | None = File(None),
-        user: User = Depends(TokenAuth),
-    ):
+  @postRouter.post("/")
+  async def create_post(
+      files: list[UploadFile] = File(...),
+      caption: str | None = Form(None),
+      kwargs: dict[str, int | str | list[str]] | None = Form(None),
+      preset: str = Form(...),
+      engine: int = Form(...),
+      thumbnail: UploadFile | None = File(None),
+      disable_likes: bool = Form(True),
+      user: User = Depends(TokenAuth),
+  ):
 
-        if (post := await user.get_post(id=postid)) is None:
-            raise HTTPException(status.HTTP_404_NOT_FOUND)
-        match post.status:
-            case Post.Status.UNBUILT: pass
-            case Post.Status.WAITING: await delete_post(postid)
-            case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
+      post = Post(
+          user=user,
+          rawcontent_files=[await f.read() for f in files],
+          rawcontent_types=[f.content_type for f in files],
+      )
+      if caption: post.rawcaption = caption
+      if kwargs: post.rawkwargs = kwargs
+      post.preset, post.engine = preset, engine
+      if thumbnail: post.thumbnail = await thumbnail.read()
+      post.disable_likes = disable_likes
+      post.status = Post.Status.UNBUILT.value
+      await post.save()
+      return await POST_PYDANTIC.from_tortoise_orm(post)
 
-        if caption is not None: post.rawcaption = caption
-        if kwargs is not None: post.rawkwargs = kwargs
-        if preset is not None: post.preset = preset
-        if engine is not None: post.engine = engine
-        if thumbnail is not None: post.thumbnail = await thumbnail.read()
-        return await post.save()
+
+  @postRouter.patch("/")
+  async def update_post(
+      postid: int,
+      caption: str | None = Form(None),
+      kwargs: str | None = Form(None),
+      preset: str | None = Form(None),
+      engine: int | None = Form(None),
+      thumbnail: UploadFile | None = File(None),
+      user: User = Depends(TokenAuth),
+  ):
+
+      if (post := await user.get_post(id=postid)) is None:
+          raise HTTPException(status.HTTP_404_NOT_FOUND)
+      match post.status:
+          case Post.Status.UNBUILT: pass
+          case Post.Status.WAITING: await delete_post(postid)
+          case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
+
+      if caption is not None: post.rawcaption = caption
+      if kwargs is not None: post.rawkwargs = kwargs
+      if preset is not None: post.preset = preset
+      if engine is not None: post.engine = engine
+      if thumbnail is not None: post.thumbnail = await thumbnail.read()
+      return await post.save()
 
 
-    @postRouter.delete("/")
-    async def delete_post(postid: int, user: User = Depends(TokenAuth)):
-        if (post := await user.get_post(id=postid)) is None:
-            raise HTTPException(status.HTTP_404_NOT_FOUND)
-        match post.status:
-            case Post.Status.UNBUILT:
-                await post.delete()
-                return "Post deleted."
-            case Post.Status.WAITING:
-                (
-                    post.api,
-                    post.content_files,
-                    post.content_types,
-                    post.caption,
-                    post.hashtags,
-                    post.usertags,
-                    post.location,
-                ) = (None for _ in range(7))
+  @postRouter.delete("/")
+  async def delete_post(postid: int, user: User = Depends(TokenAuth)):
+      if (post := await user.get_post(id=postid)) is None:
+          raise HTTPException(status.HTTP_404_NOT_FOUND)
+      match post.status:
+          case Post.Status.UNBUILT:
+              await post.delete()
+              return "Post deleted."
+          case Post.Status.WAITING:
+              (
+                  post.api,
+                  post.content_files,
+                  post.content_types,
+                  post.caption,
+                  post.hashtags,
+                  post.usertags,
+                  post.location,
+              ) = (None for _ in range(7))
 
-                post.status = Post.Status.UNBUILT
-                await post.save()
-                return f"Post ( id={post.id} ) delegated to {Post.Status.UNBUILT}"
-            case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
+              post.status = Post.Status.UNBUILT
+              await post.save()
+              return f"Post ( id={post.id} ) delegated to {Post.Status.UNBUILT}"
+          case _: raise HTTPException(status.HTTP_403_FORBIDDEN)
 
-````
+```
+
 </details>
 
 <details>
@@ -251,7 +252,7 @@
       def repost(self):
           pass
 
-````
+```
 
 </details>
 
@@ -271,6 +272,7 @@ class CamelModel(BaseModel):
     class Config:
         alias_generator = to_camel
         allow_population_by_field_name = True
+
 class User(CamelModel):
     first_name: str
     last_name: str = None

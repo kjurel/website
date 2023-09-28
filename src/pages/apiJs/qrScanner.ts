@@ -1,4 +1,6 @@
 import type { APIRoute } from "astro";
+import Peer from "peerjs";
+Peer;
 
 export const get: APIRoute = async ({ request }) => {
   // const data = await request.json();

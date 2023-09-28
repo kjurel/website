@@ -21,11 +21,7 @@
     "skipLibCheck": true,
     "strict": true,
     "resolveJsonModule": true,
-    "plugins": [
-      {
-        "name": "@astrojs/ts-plugin"
-      }
-    ]
+    "plugins": [{ "name": "@astrojs/ts-plugin" }]
   },
   "exclude": ["dist", "build", "node_modules", ".turbo"]
 }

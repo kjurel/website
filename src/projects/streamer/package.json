@@ -1,7 +1,0 @@
-{
-  "name": "@project/streamer",
-  "main": "./main.astro",
-  "dependencies": {
-    "peerjs": "^1.4.7"
-  }
-}

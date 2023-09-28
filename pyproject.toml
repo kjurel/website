@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "backend-python"
+name = "backend"
 version = "0.1.0"
-description = "a python backend"
+description = "a python serverless function"
 authors = ["tokcide <89933773+tokcide@users.noreply.github.com>"]
 readme = "README.md"
-packages = [{ include = "backend_python", from = "packages" }]
 
+# packages = [{ include = "backend", from = "src" }]
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 fastapi = "^0.95.2"
@@ -18,12 +18,12 @@ fastapi-admin = "^1.0.4"
 fastapi-login = "^1.9.1"
 fastapi-mail = { version = "1.3.*", extras = ["httpx"] }
 fastapi-utils = "^0.2.1"
-fastapi-profiler = "^1.2.0"
 fastapi-class = "^3.3.0"
 
 [tool.poetry.group.api.dependencies]
 instagrapi = "^1.18.5"
 praw = "^7.7.1"
+copydetect = "^0.4.6"
 
 [tool.poetry.group.dev.dependencies]
 aerich = "^0.7.2"
@@ -65,6 +65,7 @@ line-lenght = 120
 
 [tool.mypy]
 plugins = ["pydantic.mypy"]
+ignore_missing_imports = true
 disable_error_code = "misc"
 disallow_untyped_calls = true
 exclude = ["_legacy.py$"]

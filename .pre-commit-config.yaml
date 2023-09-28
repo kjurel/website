@@ -56,8 +56,6 @@ repos:
         name: lint-staged
         entry: bash -c 'pnpm lint-staged'
         language: system
-        types:
-          - text
         pass_filenames: true
 
   # - repo: https://github.com/astral-sh/ruff-pre-commit

@@ -8,7 +8,7 @@
     "jsxImportSource": "solid-js",
     "lib": ["ES2015"],
     "module": "ESNext",
-    "paths": { "@project/*": ["src/projects/*"] },
+    "paths": { "@/*": ["src/*"], "@feats/*": ["src/features/*/main.astro"] },
     "target": "es6"
   }
 }

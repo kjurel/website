@@ -2,61 +2,80 @@
   "name": "website",
   "private": true,
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0",
-    "start": "astro dev",
     "astro": "astro",
-    "build": "astro build",
-    "preview": "astro preview",
-    "lint": "TIMING=1 eslint \"**/*.{ts,tsx}\"",
-    "lint:ci": "pnpm run lint",
-    "test": "turbo run test --concurrecy=1",
+    "build": "pnpm lint &&  astro build",
     "ci": "pnpm lint:ci && pnpm build:ci && pnpm test:ci",
+    "dev": "astro dev --host 0.0.0.0",
     "format": "prettier --write \"**/*.{astro,js,jsx,ts,tsx,css,scss,md,mdx,yml,yaml,xml,toml,json}\"",
-    "custom:dnm": "find . -type d -name node_modules -prune -exec rm -rf {} \\;",
-    "custom:upd": "pnpm --recursive update"
+    "git:clean": "git clean --interactive -dx --exclude .env.local --exclude \".env.*.local\" --exclude node_modules/ --exclude .husky/",
+    "lint": "pnpm-run-all --parallel lint:astro lint:js+ts lint:format lint:types",
+    "lint:astro": "astro check",
+    "lint:ci": "pnpm run lint",
+    "lint:fix": "npm-run-all --serial lint:fix:*",
+    "lint:fix:format": "prettier \"**/*\" --write --ignore-unknown",
+    "lint:fix:js+ts": "pnpm run lint:js+ts --fix",
+    "lint:format": "prettier \"**/*\" --check --ignore-unknown",
+    "lint:js+ts": "eslint --ext .astro,.js,.jsx,.cjs,.ts,.tsx,.cts --ignore-path .gitignore .",
+    "lint:types": "tsc --noEmit",
+    "preview": "astro preview",
+    "ss:dnm": "find . -type d -name node_modules -prune -exec rm -rf {} \\;",
+    "ss:npk": "pnpm dlx npkill",
+    "ss:pms": "pip list | tail -n +3 | awk '{print $1}' | xargs pip show | grep -E 'Location:|Name:' | cut -d ' ' -f 2 | paste -d ' ' - - | awk '{print $2 \"/\" tolower($1)}' | xargs du -sh 2> /dev/null | sort -hr",
+    "ss:upr": "pnpm --recursive update",
+    "start": "astro dev",
+    "test": "turbo run test --concurrecy=1"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "@astrojs/partytown": "^1.2.3",
-    "@astrojs/solid-js": "^2.2.1",
-    "@astrojs/tailwind": "^4.0.0",
-    "@astrojs/vercel": "^3.8.2",
+    "@astrojs/mdx": "^1.1.0",
+    "@astrojs/partytown": "^2.0.0",
+    "@astrojs/prefetch": "^0.4.0",
+    "@astrojs/solid-js": "^3.0.1",
+    "@astrojs/tailwind": "^5.0.0",
+    "@astrojs/vercel": "^4.0.5",
     "@nanostores/solid": "^0.4.2",
-    "@supabase/supabase-js": "^2.33.1",
-    "astro": "^2.10.12",
-    "astro-purgecss": "^2.3.0",
-    "daisyui": "^3.6.4",
-    "nanostores": "^0.8.1",
+    "@prj/peerjs": "npm:peerjs@*",
+    "@supabase/supabase-js": "^2.33.2",
+    "@trpc/client": "^10.23.0",
+    "@trpc/server": "^10.23.0",
+    "astro": "^3.1.0",
+    "drizzle-orm": "^0.28.6",
+    "nanostores": "^0.9.3",
     "solid-js": "^1.7.11",
-    "tailwindcss": "^3.3.3",
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^0.4.5",
+    "@astrojs/ts-plugin": "^1.1.3",
     "@changesets/cli": "^2.26.2",
     "@commitlint/cli": "^17.7.1",
     "@commitlint/config-conventional": "^17.7.0",
     "@commitlint/cz-commitlint": "^17.7.1",
-    "@julr/vite-plugin-validate-env": "^0.2.4",
-    "@typescript-eslint/eslint-plugin": "^5.62.0",
-    "@typescript-eslint/parser": "^5.62.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "@unocss/astro": "^0.55.7",
+    "@unocss/eslint-config": "^0.55.7",
+    "@unocss/preset-wind": "^0.55.7",
+    "@unocss/reset": "^0.55.7",
     "commitizen": "^4.3.0",
-    "eslint": "^8.47.0",
-    "eslint-config-prettier": "8.5.0",
-    "eslint-plugin-astro": "^0.26.2",
+    "daisyui": "^3.7.5",
+    "drizzle-kit": "^0.19.13",
+    "eslint": "^8.49.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-astro": "^0.29.0",
     "eslint-plugin-jsx-a11y": "^6.7.1",
-    "eslint-plugin-solid": "^0.8.0",
-    "lint-staged": "^13.3.0",
-    "prettier": "^2.8.8",
-    "prettier-plugin-astro": "^0.8.1",
-    "prettier-plugin-tailwindcss": "^0.2.8",
-    "prettier-plugin-toml": "^0.3.5",
-    "typescript": "4.8.4",
-    "vercel": "^29.4.0",
-    "vite-plugin-qrcode": "^0.2.2",
-    "vite-tsconfig-paths": "^4.2.0"
+    "eslint-plugin-solid": "^0.13.0",
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-tailwindcss": "^0.5.4",
+    "prettier-plugin-toml": "^1.0.0",
+    "typescript": "5.2.2",
+    "unocss": "^0.55.7",
+    "unocss-preset-daisy": "^6.0.1",
+    "unocss-preset-primitives": "0.0.1-beta.11",
+    "vercel": "^32.2.4",
+    "vite-plugin-validate-env": "npm:@julr/vite-plugin-validate-env@^0.2.4"
   },
-  "packageManager": "pnpm@8.6.10",
+  "packageManager": "pnpm@8.7.5",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
@@ -64,9 +83,6 @@
         "react"
       ]
     },
-    "requiredScripts": [
-      "build"
-    ],
     "allowedDeprecatedVersions": {
       "@npmcli/move-file": "1.1.2",
       "rollup-plugin-inject": "3.0.2",
@@ -85,7 +101,8 @@
       "plugin:@typescript-eslint/recommended",
       "plugin:astro/recommended",
       "plugin:astro/jsx-a11y-recommended",
-      "plugin:solid/recommended"
+      "plugin:solid/recommended",
+      "@unocss"
     ],
     "overrides": [
       {
@@ -114,7 +131,8 @@
       "solid"
     ],
     "rules": {
-      "@typescript-eslint/no-explicit-any": 0
+      "@typescript-eslint/no-explicit-any": 0,
+      "@unocss/blocklist": "warn"
     }
   },
   "eslintIgnore": [
@@ -128,7 +146,6 @@
   "prettier": {
     "plugins": [
       "prettier-plugin-astro",
-      "prettier-plugin-tailwindcss",
       "prettier-plugin-toml"
     ],
     "printWidth": 120,

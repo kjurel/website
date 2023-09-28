@@ -2,30 +2,15 @@ This is my personal project, I specifically made for learing more stuff.
 It hosts my porfolio and some small projects that I didnt think needed a separate repo.
 Enjoy!!
 
-# things to add
+# packages to add
 
+- [ ] solid headless
+- [ ] chadcnui
+- [ ] animtation
 - [x] supabase
-- [ ] trpc
+- [ ] trpc to serverless functions
 - [ ] axiom
 - [ ] upstash
-
-![Vercel deployments](https://img.shields.io/github/deployments/tokcide/website/production?label=vercel&logo=vercel&style=for-the-badge)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/dc211944-a755-4690-868f-f1549254266a/deploy-status)](https://app.netlify.com/sites/tokcide/deploys)
-
-[![pnpm](https://img.shields.io/badge/pnpm-docs-informational?style=flat-square&logo=pnpm)](https://pnpm.io/pnpm-cli)
-[![vite](https://img.shields.io/badge/vite-docs-informational?style=flat-square&logo=vite)](https://vitejs.dev/guide/)
-[![astro](https://img.shields.io/badge/astro-docs-informational?style=flat-square&logo=astro)](https://docs.astro.build/en/core-concepts/astro-syntax/)
-[![trpc](https://img.shields.io/badge/trpc-docs-informational?style=flat-square&logo=trpc)](https://trpc.io/docs)
-[![solid](https://img.shields.io/badge/solid-docs-informational?style=flat-square&logo=solid)](https://www.solidjs.com/docs/latest)
-[![supabase](https://img.shields.io/badge/supabase-docs-informational?style=flat-square&logo=supabase)](https://supabase.com/docs)
-[![netlify](https://img.shields.io/badge/netlify-docs-informational?style=flat-square&logo=netlify)](https://app.netlify.com/)
-[![zod](https://img.shields.io/badge/zod-docs-informational?style=flat-square&logo=zod)](https://zod.dev/)
-[![nanostores](https://img.shields.io/badge/nanostores-docs-informational?style=flat-square&logo=nanostores)](https://zod.dev/)
-
-[![nanostores](https://img.shields.io/github/stars/nanostores/nanostores?label=nanostores&logo=github&logoColor=black&style=social)](https://github.com/nanostores/nanostores)
-
-[![simple-icons](https://img.shields.io/github/stars/simple-icons/simple-icons?label=simple-icons&style=for-the-badge)](https://github.com/simple-icons/simple-icons/blob/develop/slugs.md)
 
 # Turborepo starter
 
@@ -109,57 +94,34 @@ Learn more about the power of Turborepo:
 - [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
 - [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
 
-# Starter Kit: Basics
+---
 
-```
-npm create astro@latest -- --template basics
-```
+> 🚀 **Seasoned astronaut** Having fun!
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+![Vercel deployments](https://img.shields.io/github/deployments/tokcide/website/production?label=vercel&logo=vercel&style=for-the-badge)
+![]()
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Vercel](https://img.shields.io/badge/vercel-%23000000.svg?style=for-the-badge&logo=vercel&logoColor=white)
+![Dependabot](https://img.shields.io/badge/dependabot-025E8C?style=for-the-badge&logo=dependabot&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/github%20actions-%232671E5.svg?style=for-the-badge&logo=githubactions&logoColor=white)
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+[![PNPM](https://img.shields.io/badge/pnpm-F69220.svg?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/pnpm-cli)
+![Poetry](https://img.shields.io/badge/Poetry-60A5FA.svg?style=for-the-badge&logo=Poetry&logoColor=white)
+[![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/guide/)
+[![AstroJS](https://img.shields.io/badge/pnpm-%234a4a4a.svg?style=for-the-badge&logo=pnpm&logoColor=f69220)](https://docs.astro.build/en/core-concepts/astro-syntax/)
+[![SolidJS](https://img.shields.io/badge/SolidJS-2c4f7c?style=for-the-badge&logo=solid&logoColor=c8c9cb)](https://www.solidjs.com/docs/latest)
+![Unocss](https://img.shields.io/badge/UnoCSS-333333.svg?style=for-the-badge&logo=UnoCSS&logoColor=white)
+![Postcss](https://img.shields.io/badge/PostCSS-DD3A0A.svg?style=for-the-badge&logo=PostCSS&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=for-the-badge&logo=fastapi)
+![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 
-## 🚀 Project Structure
+[![Trpc](https://img.shields.io/badge/tRPC-2596BE.svg?style=for-the-badge&logo=tRPC&logoColor=white)](https://trpc.io/docs)
+[![Zod](https://img.shields.io/badge/Zod-3E67B1.svg?style=for-the-badge&logo=Zod&logoColor=white)](https://zod.dev/)
 
-Inside of your Astro project, you'll see the following folders and files:
+[![Nanostores](https://img.shields.io/github/stars/nanostores/nanostores?label=nanostores&logo=github&logoColor=black&style=social)](https://github.com/nanostores/nanostores)
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+[![simple-icons](https://img.shields.io/github/stars/simple-icons/simple-icons?label=simple-icons&style=for-the-badge)](https://github.com/simple-icons/simple-icons/blob/develop/slugs.md)
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                 | Action                                           |
-| :---------------------- | :----------------------------------------------- |
-| `pnpm install`          | Installs dependencies                            |
-| `pnpm run dev`          | Starts local dev server at `localhost:3000`      |
-| `pnpm run build`        | Build your production site to `./dist/`          |
-| `pnpm run preview`      | Preview your build locally, before deploying     |
-| `pnpm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+And here's [something](https://github.com/Ileriayo/markdown-badges) you'd love. [Bonus](https://home.aveek.io/GitHub-Profile-Badges/)

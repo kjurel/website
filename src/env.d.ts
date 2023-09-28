@@ -1,5 +1,18 @@
 /// <reference types="astro/client" />
+import type { AttributifyAttributes } from "@unocss/preset-attributify";
 
+declare global {
+  namespace astroHTML.JSX {
+    interface HTMLAttributes extends AttributifyAttributes {}
+  }
+}
+
+declare namespace App {
+  interface Locals {
+    title: string;
+    welcomeTitle: () => string;
+  }
+}
 type ImportMetaEnvAugmented = import("@julr/vite-plugin-validate-env").ImportMetaEnvAugmented<
   typeof import("../env").default
 >;
