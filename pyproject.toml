@@ -27,7 +27,7 @@ copydetect = "^0.4.6"
 
 [tool.poetry.group.dev.dependencies]
 aerich = "^0.7.2"
-mypy = "^1.4.1"
+mypy = "^1.6.0"
 pytest = "7.4.0"
 pytest-asyncio = "^0.21.1"
 pytest-cov = "4.1.0"
