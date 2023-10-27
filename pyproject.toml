@@ -21,7 +21,7 @@ fastapi-utils = "^0.2.1"
 fastapi-class = "^3.3.0"
 
 [tool.poetry.group.api.dependencies]
-instagrapi = "^1.18.5"
+instagrapi = "^2.0.0"
 praw = "^7.7.1"
 copydetect = "^0.4.6"
 
