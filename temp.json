@@ -1,0 +1,12 @@
+{
+  
+    "lint": "pnpm-run-all --parallel lint:astro lint:js+ts lint:format lint:types",
+    "lint:astro": "astro check",
+    "lint:ci": "pnpm run lint",
+    "lint:fix": "npm-run-all --serial lint:fix:*",
+    "lint:fix:format": "prettier \"**/*\" --write --ignore-unknown",
+    "lint:fix:js+ts": "pnpm run lint:js+ts --fix",
+    "lint:format": "prettier \"**/*\" --check --ignore-unknown",
+    "lint:js+ts": "eslint --ext .astro,.js,.jsx,.cjs,.ts,.tsx,.cts --ignore-path .gitignore .",
+    "lint:types": "tsc --noEmit"
+}
