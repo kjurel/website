@@ -1,7 +1,7 @@
 /** @jsxImportSource solid-js */
 import { createSignal, createEffect, For, Show } from "solid-js";
 import type { JSX, Component } from "solid-js";
-import { streams, StreamGroup } from "../shared/stores";
+import { streams, StreamGroup } from "../context/store";
 
 export const StreamBox: Component<{ children?: JSX.Element }> = () => {
   createEffect(() => {
@@ -15,9 +15,7 @@ export const StreamBox: Component<{ children?: JSX.Element }> = () => {
   );
 };
 
-export const StreamVideo: Component<
-  { stream: StreamGroup } & JSX.HTMLAttributes<HTMLVideoElement>
-> = (props) => {
+export const StreamVideo: Component<{ stream: StreamGroup } & JSX.HTMLAttributes<HTMLVideoElement>> = (props) => {
   let canvas!: HTMLCanvasElement;
   let video!: HTMLVideoElement;
   const [stream] = createSignal(props.stream);
@@ -33,14 +31,7 @@ export const StreamVideo: Component<
       <div class="hstsack gap-3">
         <div class="float-left">
           <label for={ID}>StreamName: {props.stream.name}</label>
-          <video
-            ref={video}
-            id={ID}
-            class="rounded m-1"
-            autoplay
-            playsinline
-            controls={false}
-          ></video>
+          <video ref={video} id={ID} class="rounded m-1" autoplay playsinline controls={false}></video>
           <button
             class="btn btn-outline-primary m-2"
             onclick={() => {
@@ -57,10 +48,7 @@ export const StreamVideo: Component<
           <label for="cpimage">Captured image will be shown here</label>
           <Show when={clicked()}>
             <canvas ref={canvas} id="cpimage" class="rounded m-1"></canvas>
-            <button
-              class="btn btn-outline-danger m-2"
-              onclick={() => setClicked(false)}
-            >
+            <button class="btn btn-outline-danger m-2" onclick={() => setClicked(false)}>
               Delete
             </button>
           </Show>

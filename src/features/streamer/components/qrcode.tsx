@@ -1,8 +1,8 @@
 import { useStore } from "@nanostores/solid";
 import { Component, createEffect, createResource, createSignal, onMount } from "solid-js";
 import { Show } from "solid-js/web";
-import { localConnectionId } from "../shared/stores";
-import { targetConnectionId } from "../shared/stores";
+import { localConnectionId } from "../context/store";
+import { targetConnectionId } from "../context/store";
 
 export const Scanner: Component = () => {
   let video!: HTMLVideoElement, canvas!: HTMLCanvasElement;
