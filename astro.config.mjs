@@ -2,8 +2,7 @@ import mdx from "@astrojs/mdx";
 import prefetch from "@astrojs/prefetch";
 import solidJs from "@astrojs/solid-js";
 import vercel from "@astrojs/vercel/serverless";
-import { defineConfig, sharpImageService } from "astro/config";
-import { UnoCSS as unocss } from "unocss/astro";
+import unocss from "unocss/astro";
 import { presetAttributify, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from "unocss";
 
 import { presetDaisy } from "unocss-preset-daisy";
@@ -11,7 +10,7 @@ import { presetHeadlessUi } from "unocss-preset-primitives";
 
 import { ValidateEnv } from "vite-plugin-validate-env";
 // import tsconfigPaths from "vite-tsconfig-paths";
-
+import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.kanishkk.vercel.app",
@@ -26,9 +25,6 @@ export default defineConfig({
     imageService: true,
     functionPerRoute: false,
   }),
-  image: {
-    service: sharpImageService(),
-  },
   integrations: [
     mdx({
       syntaxHighlight: "shiki",
@@ -72,6 +68,6 @@ export default defineConfig({
     solidJs(),
   ],
   vite: {
-    plugins: [ValidateEnv()],
+    // plugins: [ValidateEnv()],
   },
 });
