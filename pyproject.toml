@@ -9,7 +9,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.9,<3.11"
 fastapi = "^0.95.2"
-tortoise-orm = { extras = ["asyncpg"], version = "^0.20.0" }
+tortoise-orm = {version = "^0.19.0", extras = ["asyncpg"]}
 
 [tool.poetry.group.fastapi-extensions.dependencies]
 slowapi = "^0.1.8"
@@ -21,7 +21,7 @@ fastapi-utils = "^0.2.1"
 fastapi-class = "^3.3.0"
 
 [tool.poetry.group.api.dependencies]
-instagrapi = "^1.18.5"
+instagrapi = "^2.0.0"
 praw = "^7.7.1"
 copydetect = "^0.4.6"
 
@@ -34,6 +34,15 @@ pytest-cov = "4.1.0"
 pytest-sugar = "0.9.7"
 pre-commit = "^3.5.0"
 uvicorn = { extras = ["standard"], version = "^0.23.1" }
+black = "^23.11.0"
+
+# [tool.poetry.dependencies.tortoise-orm]
+# version = "0.20.0"
+# pydantic = "^2.5"
+
+
+[tool.poetry.scripts]
+dev = "backend.run:dev"
 
 [build-system]
 requires = ["poetry-core"]
@@ -57,7 +66,16 @@ location = "./migrations"
 tortoise_orm = "app.core.init_app.TORTOISE_ORM"
 
 [tool.ruff]
-exclude = [".git", "__pycache__", "build", "dist", ".tox", "venv", ".venv", ".pytest_cache"]
+exclude = [
+  ".git",
+  "__pycache__",
+  "build",
+  "dist",
+  ".tox",
+  "venv",
+  ".venv",
+  ".pytest_cache",
+]
 
 # max-line-length = 120
 [tool.black]
@@ -69,7 +87,6 @@ ignore_missing_imports = true
 disable_error_code = "misc"
 disallow_untyped_calls = true
 exclude = ["_legacy.py$"]
-
 # explicit_package_bases = true
 # namespace_packages = true
 # show_error_codes = true
@@ -81,35 +98,8 @@ exclude = ["_legacy.py$"]
 # no_implicit_reexport = true
 # # for strict mypy: (this is the tricky one :-))
 # disallow_untyped_defs = true
+
 [tool.pydantic-mypy]
 init_forbid_extra = true
 init_typed = true
 warn_required_dynamic_aliases = true
-
-[tool.yapf]
-align_closing_bracket_with_visual_indent = true
-allow_multiline_dictionary_keys = true
-allow_multiline_lambdas = true
-# allow_split_before_default_or_named_assigns
-# allow_split_before_dict_value = false
-# arithmetic_precedence_indication = false
-blank_line_before_class_docstring = false
-blank_line_before_module_docstring = false
-blank_line_before_nested_class_or_def = true
-# blank_lines_around_top_level_definition = 2
-# blank_lines_between_top_level_imports_and_variables = 2
-# coalesce_brackets = true
-column_limit = 120
-dedent_closing_brackets = true
-each_dict_entry_on_separate_line = true
-indent_blank_lines = true
-indent_width = 2
-# indent_closing_brackets = true
-join_multiple_lines = true
-spaces_around_dict_delimiters = true
-spaces_around_list_delimiters = true
-spaces_around_tuple_delimiters = true
-spaces_before_comment = [15, 20]
-split_all_comma_separated_values = true
-split_all_top_level_comma_separated_values = true
-split_before_dot = true

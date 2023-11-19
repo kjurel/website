@@ -78,3 +78,9 @@ repos:
   #   hooks:
   #       - id: mypy
   #         args: [--ignore-missing-imports]
+
+  - repo: git@github.com:pre-commit/mirrors-yapf.git
+    rev: v0.26.0
+    hooks:
+      - id: yapf
+        args: ['--parallel','--in-place']

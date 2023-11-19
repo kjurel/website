@@ -2,6 +2,7 @@
   "name": "website",
   "private": true,
   "scripts": {
+    "run-both":"concurrently \"npm run start --prefix client\" \"cd server/venv && flask run\"",
     "astro": "astro",
     "build": "pnpm lint &&  astro build",
     "ci": "pnpm lint:ci && pnpm build:ci && pnpm test:ci",

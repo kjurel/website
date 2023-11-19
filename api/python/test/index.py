@@ -1,12 +1,8 @@
-from http.server import BaseHTTPRequestHandler
+from fastapi import FastAPI
 
-import numpy as np
+app = FastAPI(root_path="/api/py")
 
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(str(np.random.choice([1, 2, 3, 4, 5, 6])).encode())
-        return
+@app.get("/hello")
+async def hello():
+    return {"message": "Hello"}
