@@ -5,15 +5,44 @@ import zipfile
 
 import copydetect
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.routing import APIRouter
 
-app = FastAPI()
+CORS_ORIGINS = [
+    "http://localhost",
+    "http://localhost:8080",
+    "http://localhost:5000",
+    "http://localhost:4321",
+    "*",
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_METHODS = ["*"]
+CORS_ALLOW_HEADERS = ["*", "X-Request-With", "X-Request-Id"]
+app = FastAPI(
+    docs_url="/api/py/codecheckr/docs", openapi_url="/api/py/codecheckr/openapi.json"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=CORS_ORIGINS,
+    allow_credentials=CORS_ALLOW_CREDENTIALS,
+    allow_methods=CORS_ALLOW_METHODS,
+    allow_headers=CORS_ALLOW_HEADERS,
+    expose_headers=["X-Request-ID"],
+)
+router = APIRouter()
 
 
-@app.post("/api/py/codecheckr")
-async def req(f: t.Optional[UploadFile] = File(None)):
+@router.get("/api/py/codecheckr")
+async def reqG():
+    return {"command": "success"}
+
+
+@router.post("/api/py/codecheckr")
+async def reqP(f: t.Optional[UploadFile] = File(None)):
     if (f is None) or (f.content_type != "application/zip"):
         raise ValueError
     v = await f.read()
+    retval = []
     codes_fings: list[copydetect.CodeFingerprint] = []
     with io.BytesIO(v) as zip_buffer:
         with zipfile.ZipFile(zip_buffer, "r") as zip_ref:
@@ -28,6 +57,16 @@ async def req(f: t.Optional[UploadFile] = File(None)):
     codes_pairs = list(itertools.combinations(codes_fings, 2))
     for pair in codes_pairs:
         token_overlap, similarities, slices = copydetect.compare_files(pair[0], pair[1])
-        print(token_overlap, similarities, slices)
+        retval.append(
+            {
+                "pairs": [p.filename for p in pair],
+                "token_overlap": int(token_overlap),
+                "similarities": [float(s) for s in similarities],
+                # "slices": slices,
+            }
+        )
+    print(retval)
+    return retval
 
-    return {"name": "success"}
+
+app.include_router(router)

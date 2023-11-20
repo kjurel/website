@@ -1,8 +1,11 @@
 from fastapi import FastAPI
 
-app = FastAPI(root_path="/api/py")
+app = FastAPI()
 
 
-@app.get("/hello")
+@app.get("/api/py/test")
 async def hello():
     return {"message": "Hello"}
+
+
+app
