@@ -9,5 +9,8 @@
   "regions": ["bom1"],
   "trailingSlash": false,
   "outputDirectory": ".vercel/",
-  "rewrites": [{ "source": "/api/py/:path*", "destination": "/api/python" }]
+  "rewrites": [
+    { "source": "/api/py/codecheckr/:path*", "destination": "/api/python/codecheckr/" },
+    { "source": "/api/py/test/:path*", "destination": "/api/python/test/" }
+  ]
 }

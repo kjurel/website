@@ -9,12 +9,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.routing import APIRouter
 
 CORS_ORIGINS = [
-    "http://localhost",
-    "http://localhost:8080",
-    "http://localhost:5000",
     "http://localhost:4321",
-    "*",
+    "https://kanishkk.vercel.app",
+    "https://website-git-main-tokcide.vercel.app",
 ]
+CORS_REGEX_ORIGINS = [r"https:\/\/website-(?:[a-zA-Z0-9_-]+)-tokcide\.vercel\.app"]
+
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = ["*"]
 CORS_ALLOW_HEADERS = ["*", "X-Request-With", "X-Request-Id"]
@@ -24,6 +24,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
+    allow_origin_regex=CORS_REGEX_ORIGINS,
     allow_credentials=CORS_ALLOW_CREDENTIALS,
     allow_methods=CORS_ALLOW_METHODS,
     allow_headers=CORS_ALLOW_HEADERS,
