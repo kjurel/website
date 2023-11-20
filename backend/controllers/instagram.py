@@ -1,3 +1,119 @@
+"""ONLY PYTHON"""
+from __future__ import annotations
+
+import typing as t
+
+from fastapi import (
+    APIRouter,
+    Body,
+    Depends,
+    File,
+    HTTPException,
+    Response,
+    UploadFile,
+    status,
+)
+from fastapi.security import OAuth2PasswordRequestForm
+from fastapi_class import View, endpoint
+from fastapi_login.exceptions import InvalidCredentialsException
+
+from ..core.authentication import BasicAuth, TokenAuth
+from ..models.instagram import USER_PYDANTIC
+from ..models.instagram import InstagramUser as User
+from ..models.instagram import UserConfig
+from ..schemas.instagram import DeviceInputs
+
+OAUTH2 = TokenAuth(
+    scopes={"login": "Basic user previlages"},
+)
+
+
+@OAUTH2.user_loader()
+async def load_user(username: str):
+    user = await User.get(username=username)
+    return user
+
+
+@View(authRouter := APIRouter(prefix="/access-token", tags=["Authentication"]))
+class AuthView:
+    async def post(self, data: OAuth2PasswordRequestForm = Depends()):
+        username = data.username
+        password = data.password
+
+        user = await load_user(username)
+        if user and user.verify_password(password.encode()):
+            scopes = data.scopes
+            if "login" in scopes:
+                print("login scope encountered in /access-token")
+            access_token = OAUTH2.create_access_token(
+                data=dict(sub=username), scopes=scopes
+            )
+            return {"access_token": access_token, "token_type": "bearer"}
+        raise InvalidCredentialsException
+
+
+@View(userRouter := APIRouter(prefix="/user", tags=["Instagram User"]))
+class UserView:
+    # responses={200: {"content": {"aplication/json": {}}}},
+    # response_class=Response,
+    @endpoint(status_code=200)
+    async def get(self, user: User = Depends(TokenAuth)):
+        # (await User_pydantic.from_tortoise_orm(user)).json(encoder=None)
+        return Response(content=await user.to_json(), media_type="application/json")
+
+    @endpoint(status_code=status.HTTP_201_CREATED)
+    async def post(self, f: UploadFile, _=Depends(BasicAuth)):
+        if f.content_type == "aplication/json":
+            await (user := await User.from_json(f.file.read())).save()
+        else:
+            raise HTTPException(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+        return USER_PYDANTIC.from_tortoise_orm(user)
+
+    async def delete(self, user: User = Depends(TokenAuth)):
+        return await user.delete()
+
+    @endpoint(("PATCH",), path="/device")
+    async def update_instagram_device(
+        self,
+        country: str = Body(...),
+        code: int = Body(...),
+        locale: str = Body(...),
+        tz: float = Body(...),
+        user: User = Depends(TokenAuth),
+    ):
+        device_inputs: DeviceInputs = {
+            "country": country,
+            "code": code,
+            "locale": locale,
+            "tz": tz,
+        }
+
+        j = user.generate_new_device(device_inputs)
+        return await user.update_from_dict(dict(instagram_device=j)).save()
+
+    @staticmethod
+    @endpoint(("PATCH",), path="/icon")
+    async def set_icon(f: UploadFile | None = File(None), user: User = Depends(OAUTH2)):
+        if f is None:
+            v = None
+        elif f.content_type == "image/png":
+            v = await f.read()
+        else:
+            raise HTTPException(status.HTTP_415_UNSUPPORTED_MEDIA_TYPE)
+        await user.update_from_dict(dict(icon=v)).save()
+        return "Icon updated"
+
+    @staticmethod
+    @endpoint(("PATCH",), path="/config")
+    async def patch_config(config: UserConfig, user: User = Depends(OAUTH2)):
+        user.config = config
+        return await user.save()
+
+
+router = APIRouter()
+router.include_router(authRouter)
+router.include_router(userRouter)
+
 # from __future__ import annotations
 
 # from app.api.instagram.models import POST_PYDANTIC, Post, User

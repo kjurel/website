@@ -1,11 +1,13 @@
 from __future__ import annotations
 
+import typing as t
 from os import environ
 
-from app.settings.config import settings
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from fastapi_login import LoginManager
+
+from ..prefs import settings
 
 
 async def BasicAuth(credentials: HTTPBasicCredentials = Depends(HTTPBasic())):
@@ -21,8 +23,10 @@ async def BasicAuth(credentials: HTTPBasicCredentials = Depends(HTTPBasic())):
     )
 
 
-def TokenAuth(token_url_appname: str, scopes: dict[str, str]):
+def TokenAuth(scopes: t.Optional[dict[str, str]] = None):
+    scopes = scopes or {}
     return LoginManager(
-        secret=settings.SECRET_KEY,
-        token_url=settings.TOKEN_URL.format(),
+        secret=settings.AUTHENTICATION_SECRET_KEY,
+        token_url=settings.AUTHENTICATION_TOKEN_URL,
+        scopes=scopes,
     )

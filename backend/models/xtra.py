@@ -1,7 +1,7 @@
 from tortoise import fields
 from tortoise.contrib.pydantic.creator import pydantic_model_creator
 
-from ...core.base.base_models import BaseDB
+from ..core.base.base_models import BaseDB
 
 
 class RemoteCache(BaseDB):

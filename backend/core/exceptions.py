@@ -29,7 +29,7 @@ class APIException(Exception):
         return f"APIException(status_code={self.status_code}, detail={self.message})"
 
 
-async def on_api_exception(request: Request, exception: APIException) -> JSONResponse:
+async def on_api_exception(_: Request, exception: APIException) -> JSONResponse:
     content: t.Dict[str, t.Dict[str, t.Any]] = {
         "error": {"error_code": exception.error_code}
     }
@@ -43,7 +43,7 @@ async def on_api_exception(request: Request, exception: APIException) -> JSONRes
     return JSONResponse(content=content, status_code=exception.status_code)
 
 
-async def unhandled_exception_handler(request: Request, exc: Exception) -> Response:
+async def unhandled_exception_handler(request: Request, _: Exception) -> Response:
     return await http_exception_handler(
         request,
         HTTPException(
