@@ -68,6 +68,9 @@ export default defineConfig({
     solidJs(),
   ],
   vite: {
+    build: {
+      external: ["xlsx"],
+    },
     // plugins: [ValidateEnv()],
   },
 });
