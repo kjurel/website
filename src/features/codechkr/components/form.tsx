@@ -52,7 +52,7 @@ export const Submitter: Component = () => {
     const formData = new FormData();
     formData.append("f", input.files[0]);
 
-    fetch("http://localhost:8000/api/py/codecheckr", {
+    fetch("/api/py/codecheckr", {
       method: "POST",
       body: formData,
       headers: {
