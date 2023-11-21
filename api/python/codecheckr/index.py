@@ -40,8 +40,8 @@ async def reqG():
 
 @router.post("/api/py/codecheckr")
 async def reqP(f: t.Optional[UploadFile] = File(None)):
-    if (f is None) or (f.content_type != "application/zip"):
-        raise ValueError
+    # if (f is None) or (f.content_type != "application/zip"):
+    #    raise ValueError
     v = await f.read()
     retval = []
     codes_fings: list[copydetect.CodeFingerprint] = []
