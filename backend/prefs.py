@@ -4,10 +4,11 @@ import typing as t
 from functools import lru_cache
 
 import pydantic
+from pydantic_settings import BaseSettings
 
 
-class Settings(pydantic.BaseSettings):
-    PRODUCTION: bool
+class Settings(BaseSettings):
+    PRODUCTION: bool = True
     DEBUG: bool
 
     AUTHENTICATION_MASTER_USERNAME: str
@@ -20,15 +21,22 @@ class Settings(pydantic.BaseSettings):
     DATABASE_RABBIT_URL: pydantic.AmqpDsn
 
     # MiddlewareSettings
-    CORS_ORIGINS = [
+    CORS_ORIGINS: t.ClassVar[t.List[str]] = [
         "http://localhost:4321",
         "https://kanishkk.vercel.app",
         "https://website-git-main-tokcide.vercel.app",
     ]
-    CORS_REGEX_ORIGINS = [r"https:\/\/website-(?:[a-zA-Z0-9_-]+)-tokcide\.vercel\.app"]
-    CORS_ALLOW_CREDENTIALS = True
-    CORS_ALLOW_METHODS = ["*"]
-    CORS_ALLOW_HEADERS = ["*", "X-Request-With", "X-Request-Id"]
+    CORS_REGEX_ORIGINS: t.ClassVar[
+        str
+    ] = r"https:\/\/website-(?:[a-zA-Z0-9_-]+)-tokcide\.vercel\.app"
+
+    CORS_ALLOW_CREDENTIALS: t.ClassVar[bool] = True
+    CORS_ALLOW_METHODS: t.ClassVar[t.List[str]] = ["*"]
+    CORS_ALLOW_HEADERS: t.ClassVar[t.List[str]] = [
+        "*",
+        "X-Request-With",
+        "X-Request-Id",
+    ]
 
     class Config:
         env_prefix = "PYTHON_"
@@ -37,22 +45,21 @@ class Settings(pydantic.BaseSettings):
         case_sensitive = False
 
     def get_tortoise_config(self, m: t.List[str], /):
+        # "default": {
+        #     "engine": "tortoise.backends.asyncpg",
+        #     "db_url": self.DATABASE_POSTGRES_URL,
+        #     "credentials": {
+        #         "host": self.DATABASE_POSTGRES_URL.hosts()[0],
+        #         "port": self.DATABASE_POSTGRES_URL.port,
+        #         "user": self.DATABASE_POSTGRES_URL.user,
+        #         "password": self.DATABASE_POSTGRES_URL.password,
+        #         "database": None
+        #         if self.DATABASE_POSTGRES_URL.path is None
+        #         else self.DATABASE_POSTGRES_URL.path[1:],
+        #     },
+        # }
         return {
-            "connections": {
-                "default": {
-                    "engine": "tortoise.backends.asyncpg",
-                    "db_url": self.DATABASE_POSTGRES_URL,
-                    "credentials": {
-                        "host": self.DATABASE_POSTGRES_URL.host,
-                        "port": self.DATABASE_POSTGRES_URL.port,
-                        "user": self.DATABASE_POSTGRES_URL.user,
-                        "password": self.DATABASE_POSTGRES_URL.password,
-                        "database": None
-                        if self.DATABASE_POSTGRES_URL.path is None
-                        else self.DATABASE_POSTGRES_URL.path[1:],
-                    },
-                }
-            },
+            "connections": {"default": self.DATABASE_POSTGRES_URL},
             "apps": {
                 "models": {
                     "models": m,

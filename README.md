@@ -96,7 +96,7 @@ Learn more about the power of Turborepo:
 
 ---
 
-> 🚀 **Seasoned astronaut** Having fun!
+> 🚀 **Project Badges** !
 
 ![Vercel deployments](https://img.shields.io/github/deployments/tokcide/website/production?label=vercel&logo=vercel&style=for-the-badge)
 ![]()

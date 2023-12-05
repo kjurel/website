@@ -1,16 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true,
-  "framework": "astro",
   "buildCommand": "pnpm build",
+  "cleanUrls": true,
   "devCommand": "pnpm dev",
+  "framework": "astro",
   "installCommand": "pnpm install",
-  "redirects": [],
   "regions": ["bom1"],
-  "trailingSlash": false,
   "outputDirectory": ".vercel/",
+  "redirects": [],
   "rewrites": [
-    { "source": "/api/py/codecheckr/:path*", "destination": "/api/python/codecheckr/" },
-    { "source": "/api/py/test/:path*", "destination": "/api/python/test/" }
+    { "source": "/api/py/main/(.*)", "destination": "api/py/main/" },
+    { "source": "/api/py/test", "destination": "api/py/test/index.py" }
   ]
 }

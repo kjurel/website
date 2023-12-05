@@ -1,3 +1,4 @@
+import logging
 import os
 import typing as t
 from importlib import import_module
@@ -8,7 +9,9 @@ from fastapi import FastAPI
 from .utils.schemas import File
 
 
-def find_py_files(directory: str) -> t.Generator[File, None, None]:
+def find_py_files(
+    directory: str, n: t.Callable[[File], bool] = lambda _: True
+) -> t.Generator[File, None, None]:
     for root, _, files in os.walk(directory):
         for file in files:
             if file.endswith(".py"):
@@ -20,20 +23,22 @@ def find_py_files(directory: str) -> t.Generator[File, None, None]:
                     if "api" in import_string
                     else import_string
                 )
-
-                yield File(name=file_name, path=file_path, import_string=import_string)
+                file = File(name=file_name, path=file_path, import_string=import_string)
+                if n(file):
+                    yield file
 
 
 def dev():
     app = FastAPI()
 
     api_path = os.path.abspath(__file__).replace("backend/run.py", "api/")
-    for f in find_py_files(api_path):
+    print(f"searching in {api_path}")
+    for f in find_py_files(api_path, lambda x: x.path.find("/_") == -1):
         mod = import_module(f.import_string)
-        try:
-            mapp = mod.__getattr__("app")
-        except AttributeError as E:
-            continue
-        app.mount("/", mapp)
+        mapp: t.Optional[FastAPI] = getattr(mod, "app", None)
+        if mapp is not None:
+            print(f"mounting {f.name} with path {f.path}")
+            print(f"routers are {mapp.routes}")
+            app.mount("/", mapp)
 
     uvicorn.run(app)

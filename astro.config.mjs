@@ -1,31 +1,34 @@
-import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
-import solidJs from "@astrojs/solid-js";
+import { defineConfig } from "astro/config";
+// adapter
 import vercel from "@astrojs/vercel/serverless";
+// vite
+import { ValidateEnv } from "vite-plugin-validate-env";
+// integrations
+import mdx from "@astrojs/mdx";
+import solidJs from "@astrojs/solid-js";
+import prefetch from "@astrojs/prefetch";
 import unocss from "unocss/astro";
 import { presetAttributify, presetIcons, presetUno, transformerDirectives, transformerVariantGroup } from "unocss";
-
 import { presetDaisy } from "unocss-preset-daisy";
 import { presetHeadlessUi } from "unocss-preset-primitives";
 
-import { ValidateEnv } from "vite-plugin-validate-env";
-// import tsconfigPaths from "vite-tsconfig-paths";
-import { defineConfig } from "astro/config";
 // https://astro.build/config
 export default defineConfig({
   site: "https://www.kanishkk.vercel.app",
   output: "server",
   adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-    speedInsights: {
-      enabled: true,
-    },
+    webAnalytics: { enabled: true },
+    speedInsights: { enabled: true },
     imageService: true,
     functionPerRoute: false,
   }),
+  vite: {
+    build: { external: ["xlsx"] },
+    // plugins: [ValidateEnv()],
+  },
   integrations: [
+    solidJs(),
+    prefetch({ throttle: 3 }),
     mdx({
       syntaxHighlight: "shiki",
       shikiConfig: { theme: "dracula" },
@@ -34,7 +37,6 @@ export default defineConfig({
     }),
     unocss({
       injectReset: true,
-
       shortcuts: [{ "i-logo": "i-logos-astro w-6em h-6em transform transition-800" }],
       presets: [
         presetUno({
@@ -61,16 +63,5 @@ export default defineConfig({
       ],
       transformers: [transformerDirectives(), transformerVariantGroup()],
     }),
-    prefetch({
-      // Allow up to three links to be prefetched concurrently
-      throttle: 3,
-    }),
-    solidJs(),
   ],
-  vite: {
-    build: {
-      external: ["xlsx"],
-    },
-    // plugins: [ValidateEnv()],
-  },
 });

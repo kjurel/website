@@ -7,14 +7,12 @@ from fastapi import APIRouter, File, UploadFile
 from fastapi_class import View
 
 
-@View(checkRouter := APIRouter(prefix="/check", tags=["Code Checkr"]))
-class TestView:
+@View(checkRouter := APIRouter(prefix="/codecheckr", tags=["Code Checkr"]))
+class checkrView:
     def get(self):
-        return {"command": "success"}
+        return {"service": "working"}
 
     async def post(self, f: UploadFile = File(...)):
-        if (f is None) or (f.content_type != "application/zip"):
-            raise ValueError
         v = await f.read()
         retval = []
         codes_fings: list[copydetect.CodeFingerprint] = []
