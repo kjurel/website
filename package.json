@@ -38,7 +38,7 @@
     "@supabase/supabase-js": "^2.33.2",
     "@trpc/client": "^10.23.0",
     "@trpc/server": "^10.23.0",
-    "astro": "^3.1.0",
+    "astro": "^3.6.4",
     "drizzle-orm": "^0.28.6",
     "nanostores": "^0.9.3",
     "solid-js": "^1.7.11",
