@@ -142,8 +142,8 @@ importers:
         specifier: ^6.0.1
         version: 6.0.1(daisyui@3.7.5)(unocss@0.55.7)
       unocss-preset-primitives:
-        specifier: 0.0.1-beta.11
-        version: 0.0.1-beta.11
+        specifier: 0.0.1-beta.13
+        version: 0.0.1-beta.13
       vercel:
         specifier: ^32.2.4
         version: 32.2.4
@@ -2317,6 +2317,10 @@ packages:
 
   /@unocss/core@0.55.7:
     resolution: {integrity: sha512-c+bWe844Xjlwc1EPwHj0+n3LpntJG7ELPbEOOxNIG+CQdcEX0l1G0rkM8+nKstJ9WJmgpf1HdJQLVMF62HXvhw==}
+    dev: true
+
+  /@unocss/core@0.57.7:
+    resolution: {integrity: sha512-1d36M0CV3yC80J0pqOa5rH1BX6g2iZdtKmIb3oSBN4AWnMCSrrJEPBrUikyMq2TEQTrYWJIVDzv5A9hBUat3TA==}
     dev: true
 
   /@unocss/eslint-config@0.55.7(eslint@8.49.0)(typescript@5.2.2):
@@ -9227,10 +9231,10 @@ packages:
       unocss: 0.55.7(postcss@8.4.30)
     dev: true
 
-  /unocss-preset-primitives@0.0.1-beta.11:
-    resolution: {integrity: sha512-hwMJj+Ku1RYOAkf7J7I5mjRhC0IT+euILAGTZJMT5lYMwxU9AsPhrD8Cwj11yOlYhNsMwgABFdks0zugUrslYQ==}
+  /unocss-preset-primitives@0.0.1-beta.13:
+    resolution: {integrity: sha512-YVJXidCgV1OhlAb3786elQzZsMHTUhDqoie6drv/7biiEt6I1pKRmQfbrZ7IUy5EHsNnPj4Qvdo8wB5gR9EPLg==}
     dependencies:
-      '@unocss/core': 0.55.7
+      '@unocss/core': 0.57.7
     dev: true
 
   /unocss@0.55.7(postcss@8.4.30):
