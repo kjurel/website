@@ -8,9 +8,11 @@ kjurel/website is built on the following main stack:
 - [TypeScript](http://www.typescriptlang.org) – Languages
 - [ESLint](http://eslint.org/) – Code Review
 - [Prettier](https://prettier.io/) – Code Review
+- [Vercel](https://vercel.com/) – Static Web Hosting
 - [GitHub Actions](https://github.com/features/actions) – Continuous Integration
-- [FastAPI](https://fastapi.tiangolo.com/) – Microframeworks (Backend)
+- [LangChain](https://github.com/hwchase17/langchain) – Large Language Model Tools
 - [Vercel AI SDK](https://sdk.vercel.ai/docs) – Large Language Model Tools
+- [pgvector](https://github.com/pgvector/pgvector/) – Database Tools
 
 Full tech stack [here](/techstack.md)
 
@@ -25,9 +27,11 @@ kjurel/website is built on the following main stack:
 - <img width='25' height='25' src='https://img.stackshare.io/service/1612/bynNY5dJ.jpg' alt='TypeScript'/> [TypeScript](http://www.typescriptlang.org) – Languages
 - <img width='25' height='25' src='https://img.stackshare.io/service/3337/Q4L7Jncy.jpg' alt='ESLint'/> [ESLint](http://eslint.org/) – Code Review
 - <img width='25' height='25' src='https://img.stackshare.io/service/7035/default_66f265943abed56bcdbfca1c866a4261b1fbb063.jpg' alt='Prettier'/> [Prettier](https://prettier.io/) – Code Review
+- <img width='25' height='25' src='https://img.stackshare.io/service/7618/bHjpwZem_400x400.png' alt='Vercel'/> [Vercel](https://vercel.com/) – Static Web Hosting
 - <img width='25' height='25' src='https://img.stackshare.io/service/11563/actions.png' alt='GitHub Actions'/> [GitHub Actions](https://github.com/features/actions) – Continuous Integration
-- <img width='25' height='25' src='https://img.stackshare.io/service/25014/default_f6ff39141b468e832d1bc59fc98a060df604d44d.png' alt='FastAPI'/> [FastAPI](https://fastapi.tiangolo.com/) – Microframeworks (Backend)
+- <img width='25' height='25' src='https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg' alt='LangChain'/> [LangChain](https://github.com/hwchase17/langchain) – Large Language Model Tools
 - <img width='25' height='25' src='https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png' alt='Vercel AI SDK'/> [Vercel AI SDK](https://sdk.vercel.ai/docs) – Large Language Model Tools
+- <img width='25' height='25' src='https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png' alt='pgvector'/> [pgvector](https://github.com/pgvector/pgvector/) – Database Tools
 
 Full tech stack [here](/techstack.md)
 
@@ -38,7 +42,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [kjurel/website](https://github.com/kjurel/website)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|22<br/>Tools used|12/02/23 <br/>Report generated|
+|24<br/>Tools used|12/14/23 <br/>Report generated|
 |------|------|
 </div>
 
@@ -79,12 +83,12 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-## <img src='https://img.stackshare.io/frameworks.svg'/> Frameworks (1)
+## <img src='https://img.stackshare.io/databases.svg'/> Data (1)
 <table><tr>
   <td align='center'>
-  <img width='36' height='36' src='https://img.stackshare.io/service/25014/default_f6ff39141b468e832d1bc59fc98a060df604d44d.png' alt='FastAPI'>
+  <img width='36' height='36' src='https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png' alt='pgvector'>
   <br>
-  <sub><a href="https://fastapi.tiangolo.com/">FastAPI</a></sub>
+  <sub><a href="https://github.com/pgvector/pgvector/">pgvector</a></sub>
   <br>
   <sub></sub>
 </td>
@@ -92,7 +96,7 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-## <img src='https://img.stackshare.io/devops.svg'/> DevOps (6)
+## <img src='https://img.stackshare.io/devops.svg'/> DevOps (5)
 <table><tr>
   <td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/3337/Q4L7Jncy.jpg' alt='ESLint'>
@@ -127,14 +131,6 @@ Full tech stack [here](/techstack.md)
 </td>
 
 <td align='center'>
-  <img width='36' height='36' src='https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg' alt='PyPI'>
-  <br>
-  <sub><a href="https://pypi.org/">PyPI</a></sub>
-  <br>
-  <sub></sub>
-</td>
-
-<td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png' alt='npm'>
   <br>
   <sub><a href="https://www.npmjs.com/">npm</a></sub>
@@ -145,9 +141,38 @@ Full tech stack [here](/techstack.md)
 </tr>
 </table>
 
-## Other (3)
+## <img src='https://img.stackshare.io/saas.svg'/> Software as a Service (SaaS) (1)
 <table><tr>
   <td align='center'>
+  <img width='36' height='36' src='https://img.stackshare.io/service/7618/bHjpwZem_400x400.png' alt='Vercel'>
+  <br>
+  <sub><a href="https://vercel.com/">Vercel</a></sub>
+  <br>
+  <sub></sub>
+</td>
+
+</tr>
+</table>
+
+## Other (5)
+<table><tr>
+  <td align='center'>
+  <img width='36' height='36' src='https://img.stackshare.io/service/48516/default_dfb71fd0f2693f4157a1cc9ce86a7aa439068eb6.png' alt='DaisyUI'>
+  <br>
+  <sub><a href="https://daisyui.com/">DaisyUI</a></sub>
+  <br>
+  <sub></sub>
+</td>
+
+<td align='center'>
+  <img width='36' height='36' src='https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg' alt='LangChain'>
+  <br>
+  <sub><a href="https://github.com/hwchase17/langchain">LangChain</a></sub>
+  <br>
+  <sub></sub>
+</td>
+
+<td align='center'>
   <img width='36' height='36' src='https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png' alt='Vercel AI SDK'>
   <br>
   <sub><a href="https://sdk.vercel.ai/docs">Vercel AI SDK</a></sub>
