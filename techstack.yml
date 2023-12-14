@@ -1,11 +1,11 @@
 repo_name: kjurel/website
-report_id: ebee045215f09d52aa99981dcdce098b
+report_id: a405dcc0843f21e8894606a15b837dd4
 repo_type: Public
-timestamp: '2023-12-02T20:44:40+00:00'
-requested_by: 
+timestamp: '2023-12-14T13:27:09+00:00'
+requested_by: kjurel
 provider: github
 branch: main
-detected_tools_count: 22
+detected_tools_count: 24
 tools:
 - name: CSS 3
   description: The latest evolution of the Cascading Style Sheets language
@@ -46,19 +46,17 @@ tools:
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
   detection_source: Repo Metadata
-- name: FastAPI
-  description: A high performance, easy to learn, fast to code, ready for production
-    web framework
-  website_url: https://fastapi.tiangolo.com/
-  license: MIT
-  open_source: true
+- name: pgvector
+  description: Open-source vector similarity search for Postgres
+  website_url: https://github.com/pgvector/pgvector/
+  open_source: false
   hosted_saas: false
-  category: Languages & Frameworks
-  sub_category: Microframeworks (Backend)
-  image_url: https://img.stackshare.io/service/25014/default_f6ff39141b468e832d1bc59fc98a060df604d44d.png
-  detection_source: api/python/codecheckr/requirements.txt
+  category: Data Stores
+  sub_category: Database Tools
+  image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source: pyproject.toml
   last_updated_by: tokcide
-  last_updated_on: 2023-11-19 12:06:24.000000000 Z
+  last_updated_on: 2023-07-30 13:57:10.000000000 Z
 - name: ESLint
   description: The fully pluggable JavaScript code quality tool
   website_url: http://eslint.org/
@@ -101,21 +99,10 @@ tools:
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/7035/default_66f265943abed56bcdbfca1c866a4261b1fbb063.jpg
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
-- name: PyPI
-  description: A repository of software for the Python programming language
-  website_url: https://pypi.org/
-  open_source: false
-  hosted_saas: false
-  category: Build, Test, Deploy
-  sub_category: Hosted Package Repository
-  image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
-  detection_source: api/python/codecheckr/requirements.txt
-  last_updated_by: tokcide
-  last_updated_on: 2023-11-19 12:06:24.000000000 Z
 - name: npm
   description: The package manager for JavaScript.
   website_url: https://www.npmjs.com/
@@ -125,6 +112,37 @@ tools:
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
   detection_source: package.json
+  last_updated_by: tokcide
+  last_updated_on: 2023-07-30 13:57:10.000000000 Z
+- name: Vercel
+  description: It makes serverless application deployment easy
+  website_url: https://vercel.com/
+  open_source: false
+  hosted_saas: true
+  category: Application Utilities
+  sub_category: Static Web Hosting
+  image_url: https://img.stackshare.io/service/7618/bHjpwZem_400x400.png
+  detection_source: package.json
+  last_updated_by: tokcide
+  last_updated_on: 2023-09-28 17:15:38.000000000 Z
+- name: DaisyUI
+  description: A customizable plugin for Tailwind which adds components
+  website_url: https://daisyui.com/
+  open_source: false
+  hosted_saas: false
+  image_url: https://img.stackshare.io/service/48516/default_dfb71fd0f2693f4157a1cc9ce86a7aa439068eb6.png
+  detection_source: package.json
+  last_updated_by: tokcide
+  last_updated_on: 2023-09-28 17:15:38.000000000 Z
+- name: LangChain
+  description: Build AI apps with LLMs through composability
+  website_url: https://github.com/hwchase17/langchain
+  open_source: true
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Model Tools
+  image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source: pyproject.toml
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
 - name: Vercel AI SDK
@@ -166,7 +184,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16059/default_5fd43aeff4d6a935abc13737de01a0355210499d.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -180,7 +198,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16092/default_8725384794b44fe56f31da1d21ae759cf07be7a5.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -194,7 +212,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15982/default_8b5680d4e916298d08363c291a0d6e34c07ceb15.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -208,7 +226,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15980/default_732016a20524708efe7a4c77497fe9bfeea19ba6.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -222,7 +240,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16008/default_f8be85789693a9901dbcfa43c135c60525ae49a1.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-09-28 17:15:38.000000000 Z
@@ -236,7 +254,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15879/default_0b10af8ca19c215f781dc07442e75bdc831089d0.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: Replit user
   last_updated_on: 2023-11-21 06:39:08.000000000 Z
@@ -250,7 +268,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15845/default_6743ba96cf149a3c3c68a185199f9705d6eff80e.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -264,7 +282,7 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/16781/default_c6eddffbed005d007ab4638fbcac90e4b79576b2.png
-  detection_source_url: github.com/kjurel/website/blob/main/package.json
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: Replit user
   last_updated_on: 2023-11-21 06:39:08.000000000 Z
