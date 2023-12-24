@@ -23,7 +23,7 @@ instagram = ["instagrapi"]
 codechecker = ["copydetect"]
 
 [tool.poetry.group.dev.dependencies]
-uvicorn = { extras = ["standard"], version = "^0.23.1" }
+uvicorn = { extras = ["standard"], version = "^0.25.0" }
 pre-commit = "^3.5.0"
 black = "^23.11.0"
 mypy = "^1.6.1"
