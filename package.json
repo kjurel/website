@@ -67,7 +67,7 @@
     "eslint-plugin-solid": "^0.13.0",
     "lint-staged": "^14.0.1",
     "prettier": "^3.0.3",
-    "prettier-plugin-astro": "^0.12.0",
+    "prettier-plugin-astro": "^0.12.3",
     "prettier-plugin-tailwindcss": "^0.5.4",
     "prettier-plugin-toml": "^1.0.0",
     "typescript": "5.2.2",
