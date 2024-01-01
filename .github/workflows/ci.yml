@@ -85,7 +85,7 @@ jobs:
         run: make docs
 
       - name: Store docs site
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docs
           path: site
@@ -137,7 +137,7 @@ jobs:
           CONTEXT: linux-py${{ matrix.python-version }}-compiled
 
       - name: store coverage files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
@@ -201,7 +201,7 @@ jobs:
           CONTEXT: ${{ runner.os }}-py${{ matrix.python-version }}-without-deps
 
       - name: store coverage files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
@@ -241,7 +241,7 @@ jobs:
           CONTEXT: linux-py3.10-mypy${{ matrix.mypy-version }}
 
       - name: store coverage files
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage
           path: coverage
@@ -271,7 +271,7 @@ jobs:
       - run: coverage html --show-contexts
 
       - name: Store coverage html
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: coverage-html
           path: htmlcov
@@ -348,7 +348,7 @@ jobs:
           ${{ matrix.ls || 'ls -lh' }} dist/
           twine check dist/*
       - name: Store dist artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: pypi_files
           path: dist
