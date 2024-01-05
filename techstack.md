@@ -42,7 +42,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [kjurel/website](https://github.com/kjurel/website)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|24<br/>Tools used|12/14/23 <br/>Report generated|
+|25<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -200,9 +200,9 @@ Full tech stack [here](/techstack.md)
 </table>
 
 
-## <img src='https://img.stackshare.io/group.svg' /> Open source packages (8)</h2>
+## <img src='https://img.stackshare.io/group.svg' /> Open source packages (9)</h2>
 
-## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (8)
+## <img width='24' height='24' src='https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png'/> npm (9)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
@@ -213,6 +213,7 @@ Full tech stack [here](/techstack.md)
 |[commitizen](https://www.npmjs.com/commitizen)|v4.3.0|09/28/23|tokcide |MIT|N/A|
 |[eslint-config-prettier](https://www.npmjs.com/eslint-config-prettier)|v9.0.0|11/21/23|Replit user |MIT|N/A|
 |[eslint-plugin-jsx-a11y](https://www.npmjs.com/eslint-plugin-jsx-a11y)|v6.7.1|11/19/23|tokcide |MIT|N/A|
+|[lint-staged](https://www.npmjs.com/lint-staged)|v14.0.1|11/19/23|tokcide |MIT|N/A|
 |[xlsx](https://www.npmjs.com/xlsx)|v0.18.5|11/21/23|Replit user |Apache-2.0|[CVE-2023-30533](https://github.com/advisories/GHSA-4r6h-8v6p-xvw6) (High)|
 
 <br/>
