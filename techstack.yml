@@ -1,11 +1,12 @@
 repo_name: kjurel/website
-report_id: a405dcc0843f21e8894606a15b837dd4
+report_id: ebee045215f09d52aa99981dcdce098b
+version: 0.1
 repo_type: Public
-timestamp: '2023-12-14T13:27:09+00:00'
+timestamp: '2024-01-05T08:29:19+00:00'
 requested_by: kjurel
 provider: github
 branch: main
-detected_tools_count: 24
+detected_tools_count: 25
 tools:
 - name: CSS 3
   description: The latest evolution of the Cascading Style Sheets language
@@ -15,6 +16,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/6727/css.png
+  detection_source_url: https://github.com/kjurel/website
   detection_source: Repo Metadata
 - name: JavaScript
   description: Lightweight, interpreted, object-oriented language with first-class
@@ -25,6 +27,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1209/javascript.jpeg
+  detection_source_url: https://github.com/kjurel/website
   detection_source: Repo Metadata
 - name: Python
   description: A clear and powerful object-oriented programming language, comparable
@@ -35,6 +38,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/kjurel/website
   detection_source: Repo Metadata
 - name: TypeScript
   description: A superset of JavaScript that compiles to clean JavaScript output
@@ -45,6 +49,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/1612/bynNY5dJ.jpg
+  detection_source_url: https://github.com/kjurel/website
   detection_source: Repo Metadata
 - name: pgvector
   description: Open-source vector similarity search for Postgres
@@ -54,6 +59,7 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/pyproject.toml
   detection_source: pyproject.toml
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
@@ -66,6 +72,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Code Review
   image_url: https://img.stackshare.io/service/3337/Q4L7Jncy.jpg
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
@@ -77,6 +84,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/kjurel/website
   detection_source: Repo Metadata
 - name: GitHub Actions
   description: Automate your workflow from idea to production
@@ -86,6 +94,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Continuous Integration
   image_url: https://img.stackshare.io/service/11563/actions.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/.github/workflows/ci.yml
   detection_source: ".github/workflows/ci.yml"
   last_updated_by: dependabot[bot]
   last_updated_on: 2023-11-02 00:34:14.000000000 Z
@@ -111,6 +120,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Front End Package Manager
   image_url: https://img.stackshare.io/service/1120/lejvzrnlpb308aftn31u.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
@@ -122,6 +132,7 @@ tools:
   category: Application Utilities
   sub_category: Static Web Hosting
   image_url: https://img.stackshare.io/service/7618/bHjpwZem_400x400.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-09-28 17:15:38.000000000 Z
@@ -131,6 +142,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/48516/default_dfb71fd0f2693f4157a1cc9ce86a7aa439068eb6.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-09-28 17:15:38.000000000 Z
@@ -142,6 +154,7 @@ tools:
   category: Communications
   sub_category: Large Language Model Tools
   image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source_url: https://github.com/kjurel/website/blob/main/pyproject.toml
   detection_source: pyproject.toml
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
@@ -154,6 +167,7 @@ tools:
   category: Communications
   sub_category: Large Language Model Tools
   image_url: https://img.stackshare.io/service/101756/default_4f2991cba3ec7fdd1cc87de69f4868157b0f2001.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/vercel.json
   detection_source: vercel.json
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 17:33:43.000000000 Z
@@ -163,6 +177,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/48521/default_eea961e4c374e68a1c7eb5bbc9e4a39920890342.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-07-30 13:57:10.000000000 Z
@@ -171,6 +186,7 @@ tools:
   open_source: false
   hosted_saas: false
   image_url: https://img.stackshare.io/service/10577/11071.jpeg
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
   last_updated_on: 2023-11-19 12:15:26.000000000 Z
@@ -268,6 +284,20 @@ tools:
   category: Libraries
   sub_category: npm Packages
   image_url: https://img.stackshare.io/package/15845/default_6743ba96cf149a3c3c68a185199f9705d6eff80e.png
+  detection_source_url: https://github.com/kjurel/website/blob/main/package.json
+  detection_source: package.json
+  last_updated_by: tokcide
+  last_updated_on: 2023-11-19 12:15:26.000000000 Z
+- name: lint-staged
+  description: Lint files staged by git
+  package_url: https://www.npmjs.com/lint-staged
+  version: 14.0.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: npm Packages
+  image_url: https://img.stackshare.io/package/15868/default_e0a4fb1126d7400f419f0931cf1669947a5bc552.png
   detection_source_url: https://github.com/kjurel/website/blob/main/package.json
   detection_source: package.json
   last_updated_by: tokcide
