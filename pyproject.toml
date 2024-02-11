@@ -10,7 +10,7 @@ readme = "README.md"
 python = ">=3.9,<3.11"
 fastapi = { version = "^0.104.1", extras = ["python-multipart"] }
 tortoise-orm = { version = "^0.20.0", extras = ["asyncpg"] }
-python-multipart = "^0.0.6"
+python-multipart = "^0.0.9"
 pydantic-settings = "^2.1.0"
 instagrapi = { git = "https://github.com/subzeroid/instagrapi", optional = true }
 copydetect = { git = "https://github.com/kjurel/copydetect-slim", optional = true }
