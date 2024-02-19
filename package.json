@@ -30,7 +30,7 @@
     "@astrojs/mdx": "^1.1.0",
     "@astrojs/partytown": "^2.0.0",
     "@astrojs/prefetch": "^0.4.0",
-    "@astrojs/solid-js": "^3.0.1",
+    "@astrojs/solid-js": "^3.0.3",
     "@astrojs/tailwind": "^5.0.0",
     "@astrojs/vercel": "^4.0.5",
     "@nanostores/solid": "^0.4.2",
