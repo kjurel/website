@@ -43,7 +43,7 @@
     "nanostores": "^0.9.3",
     "solid-js": "^1.7.11",
     "xlsx": "^0.18.5",
-    "zod": "^3.22.2"
+    "zod": "^3.23.4"
   },
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.1.3",
