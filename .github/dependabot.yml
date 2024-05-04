@@ -9,11 +9,9 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: weekly
-      day: monday
+      interval: monthly
 
   - package-ecosystem: pip
     directory: /
     schedule:
-      interval: weekly
-      day: sunday
+      interval: monthly
