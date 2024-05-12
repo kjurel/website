@@ -1,14 +1,22 @@
-from http.server import BaseHTTPRequestHandler
+# from fastapi import FastAPI
 
-import copydetect
-import instagrapi
-import numpy as np
+# from backend.controllers.codecheckr import router
 
+from backend.init_app import App
 
-class handler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header("Content-type", "text/plain")
-        self.end_headers()
-        self.wfile.write(str(np.random.choice([1, 2, 3, 4, 5, 6])).encode())
-        return
+app = App("/api/py/main").controllers({"codecheckr"}).attach_controllers().app
+#
+# @app.get("/api/py/main/codecheckr")
+# def basic2():
+#     return "workgin in basic 2"
+#
+
+# app = FastAPI()
+#
+#
+# @app.get("/api/py/main")
+# def basic():
+#     return "running"
+#
+#
+# app.include_router(router, prefix="/api/py/main")
