@@ -37,6 +37,7 @@
     "jspdf-autotable": "^3.8.2",
     "nanostores": "^0.10.3",
     "node-fetch": "^3.3.2",
+    "peerjs": "^1.5.3",
     "solid-js": "^1.8.17",
     "tailwindcss": "^3.4.3",
     "xlsx": "^0.18.5",
