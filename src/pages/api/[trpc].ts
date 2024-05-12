@@ -1,14 +1,13 @@
 import { fetchRequestHandler } from "@trpc/server/adapters/fetch";
+import { appRouter } from "@server/routers/_app";
+import { createContext } from "@server/context";
 import type { APIRoute } from "astro";
-import { appRouter } from "@/server/index";
 
-export const ALL: APIRoute = ({ request }) => {
+export const ALL: APIRoute = (opts) => {
   return fetchRequestHandler({
-    req: request,
     endpoint: "/api",
+    req: opts.request,
     router: appRouter,
-    createContext: async ({ req }) => {
-      return { session: req.headers.get("X-Session") ?? undefined };
-    },
+    createContext,
   });
 };

@@ -1,0 +1,21 @@
+---
+import Main from "../../features/temp.tsx";
+import BaseLayout from "@/components/Base.Layout.astro";
+import LoginButton from "@/components/deicmsmarks/LoginButton.tsx";
+import ViewButton from "@/components/deicmsmarks/ViewButton.tsx";
+import { UsernameBox, PasswordBox } from "@/components/deicmsmarks/LoginDetail.tsx";
+---
+
+<BaseLayout title="Dei CMS Marks">
+  <div class="flex justify-center items-center h-screen">
+    <div class="bg-white rounded-lg p-8 shadow-lg">
+      <h2 class="text-2xl font-semibold mb-4">CMS Login</h2>
+      <div class="mb-4"><UsernameBox client:load /></div>
+      <div class="mb-4"><PasswordBox client:load /></div>
+      <div class="mb-4"><LoginButton client:load /></div>
+      <div><ViewButton client:load /></div>
+    </div>
+  </div>
+
+  <!-- <Main client:load /> -->
+</BaseLayout>

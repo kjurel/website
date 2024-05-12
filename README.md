@@ -2,6 +2,8 @@ This is my personal project, I specifically made for learing more stuff.
 It hosts my porfolio and some small projects that I didnt think needed a separate repo.
 Enjoy!!
 
+bun x npm-check-updates -ui
+
 # packages to add
 
 - [ ] solid headless

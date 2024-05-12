@@ -1,0 +1,391 @@
+---
+import BaseLayout from "@/components/Base.Layout.astro";
+---
+
+<BaseLayout title="2048 Game" config={{ bootstrap: false, bootstrapJs: false }}>
+  <div id="game-board"></div>
+</BaseLayout>
+<script>
+  const GRID_SIZE: number = 4;
+  const CELL_SIZE: number = 20;
+  const CELL_GAP: number = 2;
+
+  export default class Grid {
+    #cells: Cell[];
+
+    constructor(gridElement: HTMLElement) {
+      gridElement.style.setProperty("--grid-size", GRID_SIZE.toString());
+      gridElement.style.setProperty("--cell-size", `${CELL_SIZE}vmin`);
+      gridElement.style.setProperty("--cell-gap", `${CELL_GAP}vmin`);
+      this.#cells = createCellElements(gridElement).map((cellElement: HTMLElement, index: number) => {
+        return new Cell(cellElement, index % GRID_SIZE, Math.floor(index / GRID_SIZE));
+      });
+    }
+
+    get cells(): Cell[] {
+      return this.#cells;
+    }
+
+    get cellsByRow(): Cell[][] {
+      return this.#cells.reduce((cellGrid: Cell[][], cell: Cell) => {
+        cellGrid[cell.y] = cellGrid[cell.y] || [];
+        cellGrid[cell.y][cell.x] = cell;
+        return cellGrid;
+      }, []);
+    }
+
+    get cellsByColumn(): Cell[][] {
+      return this.#cells.reduce((cellGrid: Cell[][], cell: Cell) => {
+        cellGrid[cell.x] = cellGrid[cell.x] || [];
+        cellGrid[cell.x][cell.y] = cell;
+        return cellGrid;
+      }, []);
+    }
+
+    get #emptyCells(): Cell[] {
+      return this.#cells.filter((cell: Cell) => cell.tile == null);
+    }
+
+    randomEmptyCell(): Cell | undefined {
+      const randomIndex: number = Math.floor(Math.random() * this.#emptyCells.length);
+      return this.#emptyCells[randomIndex];
+    }
+  }
+
+  class Cell {
+    #cellElement: HTMLElement;
+    #x: number;
+    #y: number;
+    #tile: Tile | null;
+    #mergeTile: Tile | null;
+
+    constructor(cellElement: HTMLElement, x: number, y: number) {
+      this.#cellElement = cellElement;
+      this.#x = x;
+      this.#y = y;
+    }
+
+    get x(): number {
+      return this.#x;
+    }
+
+    get y(): number {
+      return this.#y;
+    }
+
+    get tile(): Tile | null {
+      return this.#tile;
+    }
+
+    set tile(value: Tile | null) {
+      this.#tile = value;
+      if (value == null) return;
+      this.#tile.x = this.#x;
+      this.#tile.y = this.#y;
+    }
+
+    get mergeTile(): Tile | null {
+      return this.#mergeTile;
+    }
+
+    set mergeTile(value: Tile | null) {
+      this.#mergeTile = value;
+      if (value == null) return;
+      this.#mergeTile.x = this.#x;
+      this.#mergeTile.y = this.#y;
+    }
+
+    canAccept(tile: Tile): boolean {
+      return this.tile == null || (this.mergeTile == null && this.tile.value === tile.value);
+    }
+
+    mergeTiles(): void {
+      if (this.tile == null || this.mergeTile == null) return;
+      this.tile.value = this.tile.value + this.mergeTile.value;
+      this.mergeTile.remove();
+      this.mergeTile = null;
+    }
+  }
+
+  class Tile {
+    x: number;
+    y: number;
+    value: number;
+
+    constructor(x: number, y: number, value: number) {
+      this.x = x;
+      this.y = y;
+      this.value = value;
+    }
+
+    remove(): void {
+      // Implement tile removal logic if needed
+    }
+  }
+
+  function createCellElements(gridElement: HTMLElement): HTMLElement[] {
+    const cells: HTMLElement[] = [];
+    for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
+      const cell: HTMLElement = document.createElement("div");
+      cell.classList.add("cell");
+      cells.push(cell);
+      gridElement.append(cell);
+    }
+    return cells;
+  }
+</script>
+<script>
+  export default class Tile {
+    #tileElement: HTMLDivElement;
+    #x: number;
+    #y: number;
+    #value: number;
+
+    constructor(tileContainer: HTMLElement, value: number = Math.random() > 0.5 ? 2 : 4) {
+      this.#tileElement = document.createElement("div");
+      this.#tileElement.classList.add("tile");
+      tileContainer.append(this.#tileElement);
+      this.value = value;
+    }
+
+    get value(): number {
+      return this.#value;
+    }
+
+    set value(v: number) {
+      this.#value = v;
+      this.#tileElement.textContent = v.toString();
+      const power = Math.log2(v);
+      const backgroundLightness = 100 - power * 9;
+      this.#tileElement.style.setProperty("--background-lightness", `${backgroundLightness}%`);
+      this.#tileElement.style.setProperty("--text-lightness", `${backgroundLightness <= 50 ? 90 : 10}%`);
+    }
+
+    set x(value: number) {
+      this.#x = value;
+      this.#tileElement.style.setProperty("--x", value.toString());
+    }
+
+    set y(value: number) {
+      this.#y = value;
+      this.#tileElement.style.setProperty("--y", value.toString());
+    }
+
+    remove(): void {
+      this.#tileElement.remove();
+    }
+
+    waitForTransition(animation: boolean = false): Promise<Event> {
+      return new Promise<Event>((resolve) => {
+        this.#tileElement.addEventListener(animation ? "animationend" : "transitionend", resolve, {
+          once: true,
+        });
+      });
+    }
+  }
+</script>
+<script>
+  const gameBoard: HTMLElement | null = document.getElementById("game-board");
+
+  if (gameBoard) {
+    const grid: Grid = new Grid(gameBoard);
+
+    if (grid.randomEmptyCell()) {
+      grid.randomEmptyCell().tile = new Tile(gameBoard);
+    }
+
+    if (grid.randomEmptyCell()) {
+      grid.randomEmptyCell().tile = new Tile(gameBoard);
+    }
+
+    setupInput();
+
+    function setupInput(): void {
+      window.addEventListener("keydown", handleInput, { once: true });
+    }
+
+    async function handleInput(e: KeyboardEvent): Promise<void> {
+      switch (e.key) {
+        case "ArrowUp":
+          if (!canMoveUp()) {
+            setupInput();
+            return;
+          }
+          await moveUp();
+          break;
+        case "ArrowDown":
+          if (!canMoveDown()) {
+            setupInput();
+            return;
+          }
+          await moveDown();
+          break;
+        case "ArrowLeft":
+          if (!canMoveLeft()) {
+            setupInput();
+            return;
+          }
+          await moveLeft();
+          break;
+        case "ArrowRight":
+          if (!canMoveRight()) {
+            setupInput();
+            return;
+          }
+          await moveRight();
+          break;
+        default:
+          setupInput();
+          return;
+      }
+
+      grid.cells.forEach((cell) => cell.mergeTiles());
+
+      const newTile = new Tile(gameBoard);
+      const randomEmptyCell = grid.randomEmptyCell();
+      if (randomEmptyCell) {
+        randomEmptyCell.tile = newTile;
+      }
+
+      if (!canMoveUp() && !canMoveDown() && !canMoveLeft() && !canMoveRight()) {
+        newTile.waitForTransition(true).then(() => {
+          alert("You lose");
+        });
+        return;
+      }
+
+      setupInput();
+    }
+
+    function moveUp(): Promise<void> {
+      return slideTiles(grid.cellsByColumn);
+    }
+
+    function moveDown(): Promise<void> {
+      return slideTiles(grid.cellsByColumn.map((column) => [...column].reverse()));
+    }
+
+    function moveLeft(): Promise<void> {
+      return slideTiles(grid.cellsByRow);
+    }
+
+    function moveRight(): Promise<void> {
+      return slideTiles(grid.cellsByRow.map((row) => [...row].reverse()));
+    }
+
+    function slideTiles(cells: any[]): Promise<void> {
+      return Promise.all(
+        cells.flatMap((group) => {
+          const promises: Promise<Event>[] = [];
+          for (let i = 1; i < group.length; i++) {
+            const cell = group[i];
+            if (cell.tile == null) continue;
+            let lastValidCell;
+            for (let j = i - 1; j >= 0; j--) {
+              const moveToCell = group[j];
+              if (!moveToCell.canAccept(cell.tile)) break;
+              lastValidCell = moveToCell;
+            }
+
+            if (lastValidCell != null) {
+              promises.push(cell.tile.waitForTransition());
+              if (lastValidCell.tile != null) {
+                lastValidCell.mergeTile = cell.tile;
+              } else {
+                lastValidCell.tile = cell.tile;
+              }
+              cell.tile = null;
+            }
+          }
+          return promises;
+        })
+      );
+    }
+
+    function canMoveUp(): boolean {
+      return canMove(grid.cellsByColumn);
+    }
+
+    function canMoveDown(): boolean {
+      return canMove(grid.cellsByColumn.map((column) => [...column].reverse()));
+    }
+
+    function canMoveLeft(): boolean {
+      return canMove(grid.cellsByRow);
+    }
+
+    function canMoveRight(): boolean {
+      return canMove(grid.cellsByRow.map((row) => [...row].reverse()));
+    }
+
+    function canMove(cells: any[]): boolean {
+      return cells.some((group) => {
+        return group.some((cell, index) => {
+          if (index === 0) return false;
+          if (cell.tile == null) return false;
+          const moveToCell = group[index - 1];
+          return moveToCell.canAccept(cell.tile);
+        });
+      });
+    }
+  }
+</script>
+<style>
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    font-family: Arial;
+  }
+
+  body {
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 7.5vmin;
+  }
+
+  #game-board {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+    grid-template-rows: repeat(var(--grid-size), var(--cell-size));
+    background-color: #ccc;
+    gap: var(--cell-gap);
+    border-radius: 1vmin;
+    padding: var(--cell-gap);
+    position: relative;
+  }
+
+  .cell {
+    background-color: #aaa;
+    border-radius: 1vmin;
+  }
+
+  .tile {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: var(--cell-size);
+    height: var(--cell-size);
+    background-color: red;
+    border-radius: 1vmin;
+    top: calc(var(--y) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    left: calc(var(--x) * (var(--cell-size) + var(--cell-gap)) + var(--cell-gap));
+    font-weight: bold;
+    background-color: hsl(200, 50%, var(--background-lightness));
+    color: hsl(200, 25%, var(--text-lightness));
+    animation: show 200ms ease-in-out;
+    transition: 100ms ease-in-out;
+  }
+
+  @keyframes show {
+    0% {
+      opacity: 0.5;
+      transform: scale(0);
+    }
+  }
+</style>

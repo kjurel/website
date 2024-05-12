@@ -1,0 +1,7 @@
+[env]
+_.file = ".env.local"
+_.python.venv = { path = ".venv", create = true } # create the venv if it doesn't exist
+
+[tools]
+node = "lts"
+python = { version = "3.10", virtualenv = ".venv" }
