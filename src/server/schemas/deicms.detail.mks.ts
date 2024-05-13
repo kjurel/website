@@ -41,7 +41,7 @@ const attendenceSchema = z.nativeEnum(Attendence);
 
 const evaluationIDSchema = z.nativeEnum(EvaluationID);
 
-const internalGradeSchema = z.nativeEnum(InternalGrade);
+const internalGradeSchema = z.string();
 
 const marksDetailSchema = z.object({
   rollNumber: z.number(),
