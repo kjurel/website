@@ -1,5 +1,5 @@
-import { createEffect, type Component } from "solid-js";
-import { courseName } from "@/context/deicmsmarks";
+import { courseName, isLoggedIn } from "@/context/deicmsmarks";
+import { Show, createEffect, type Component } from "solid-js";
 import autoTable from "jspdf-autotable";
 import { client } from "@/utils/trpc";
 import jsPDF from "jspdf";
@@ -39,21 +39,28 @@ const ViewButton: Component = () => {
 
     const doc = new jsPDF();
     autoTable(doc, {
+      theme: "grid",
       head: [{ roll: "Roll Number", ...comps, total: "Total Marks", grade: "Grade" }],
       body: bodyDD,
+      styles: { cellPadding: 0.5, fontSize: 8 },
+      // tableWidth: "wrap",
     });
-    doc.save("CMS.pdf");
+    doc.save(
+      `${courseName()}-${new Date().toLocaleDateString("en", { day: "numeric", month: "short" }).replace(/\s/g, "").toLowerCase()}.pdf`
+    );
   };
   return (
-    <button
-      ref={button}
-      type="submit"
-      onclick={handler}
-      class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
-      disabled
-    >
-      Download
-    </button>
+    <Show when={isLoggedIn()}>
+      <button
+        ref={button}
+        type="submit"
+        onclick={handler}
+        class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+        disabled
+      >
+        Download
+      </button>
+    </Show>
   );
 };
 
