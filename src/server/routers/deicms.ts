@@ -181,7 +181,9 @@ export const deicmsLoginRouter = router({
       true
     )
       .then((response) => response.text())
-      .then((txt) => welcome2Schema.parse(new XMLParser().parse(txt)));
+      .then((txt) => {
+        return welcome2Schema.parse(new XMLParser().parse(txt));
+      });
 
     const marksData = await fetchM(
       "https://admission.dei.ac.in:8085/CMS/marksInfo/getStudentMarks.htm",
@@ -190,7 +192,9 @@ export const deicmsLoginRouter = router({
       true
     )
       .then((response) => response.text())
-      .then((txt) => welcome1Schema.parse(new XMLParser().parse(txt)));
+      .then((txt) => {
+        return welcome1Schema.parse(new XMLParser().parse(txt));
+      });
 
     return { comps: evaluationData, marks: marksData };
   }),

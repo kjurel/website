@@ -48,7 +48,7 @@ const LoginButton: Component = () => {
           class="select select-bordered join-item w-full"
           onchange={(e) => {
             setSemName(Number(e.target.value));
-            setCourseName("");
+            setCourseName(false);
           }}
         >
           <option disabled selected>

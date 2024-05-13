@@ -1,5 +1,8 @@
 import { z } from "zod";
 
+// for number -> string
+const xmlFix = z.union([z.string(), z.number().transform((num) => num.toString())]);
+
 const componentSchema = z.object({
   evaluationId: z.string(),
   group: z.string(),
@@ -39,7 +42,7 @@ export enum InternalGrade {
 
 const attendenceSchema = z.nativeEnum(Attendence);
 
-const evaluationIDSchema = z.nativeEnum(EvaluationID);
+const evaluationIDSchema = z.string();
 
 const internalGradeSchema = z.string();
 
@@ -52,7 +55,7 @@ const marksDetailSchema = z.object({
   passFail: z.string(),
   totalInternal: z.number(),
   totalExternal: z.string(),
-  totalMarks: z.string(),
+  totalMarks: xmlFix,
   internalGrade: internalGradeSchema,
   externalGrade: z.string(),
   externalPublishFlag: z.string(),

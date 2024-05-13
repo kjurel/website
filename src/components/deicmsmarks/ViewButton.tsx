@@ -1,18 +1,19 @@
+import { Show, Switch, Match, createEffect, createMemo, createResource, type Component } from "solid-js";
 import { courseName, isLoggedIn } from "@/context/deicmsmarks";
-import { Show, createEffect, type Component } from "solid-js";
 import autoTable from "jspdf-autotable";
 import { client } from "@/utils/trpc";
 import jsPDF from "jspdf";
 
 const ViewButton: Component = () => {
   let button!: HTMLButtonElement;
-  createEffect(async () => {
-    if (courseName() !== "") {
-      button.disabled = false;
-    }
-  });
+  const toLoad = createMemo(() => courseName() !== "");
+  const [data, { mutate, refetch }] = createResource(courseName, (v) =>
+    client.deicms.getStudentMarks.query(v.toString())
+  );
   const handler = async () => {
-    const response = await client.deicms.getStudentMarks.query(courseName());
+    // const response = await client.deicms.getStudentMarks.query(courseName());
+    const response = data();
+    if (!response) return;
     const comps: { [key: string]: string } = {};
     response.comps.ComponentList.component.forEach(
       (val, idx) => (comps[val.evaluationId.toString()] = val.evaluationIdName.toString())
@@ -43,7 +44,6 @@ const ViewButton: Component = () => {
       head: [{ roll: "Roll Number", ...comps, total: "Total Marks", grade: "Grade" }],
       body: bodyDD,
       styles: { cellPadding: 0.5, fontSize: 8 },
-      // tableWidth: "wrap",
     });
     doc.save(
       `${courseName()}-${new Date().toLocaleDateString("en", { day: "numeric", month: "short" }).replace(/\s/g, "").toLowerCase()}.pdf`
@@ -55,10 +55,17 @@ const ViewButton: Component = () => {
         ref={button}
         type="submit"
         onclick={handler}
-        class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
-        disabled
+        // class="w-full bg-blue-500 text-white py-3 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-200"
+        class="w-full btn "
       >
-        Download
+        <Switch fallback={"Download"}>
+          <Match when={data.loading}>
+            <span class="loading loading-infinity loading-sm"></span>{" "}
+          </Match>
+          <Match when={data.state === "errored"}>
+            <div class="text-error">Last request error</div>
+          </Match>
+        </Switch>
       </button>
     </Show>
   );
