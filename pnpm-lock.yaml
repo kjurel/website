@@ -9,17 +9,14 @@ importers:
   .:
     dependencies:
       '@astrojs/solid-js':
-        specifier: ^4.1.0
-        version: 4.1.0(solid-js@1.8.17)(vite@5.2.11(@types/node@16.18.11))
+        specifier: ^4.4.0
+        version: 4.4.0(solid-js@1.8.17)(vite@5.2.11(@types/node@16.18.11))
       '@astrojs/tailwind':
         specifier: ^5.1.0
         version: 5.1.0(astro@4.7.1(@types/node@16.18.11)(typescript@5.4.5))(tailwindcss@3.4.3(ts-node@10.9.2(@types/node@16.18.11)(typescript@5.4.5)))(ts-node@10.9.2(@types/node@16.18.11)(typescript@5.4.5))
       '@astrojs/vercel':
         specifier: ^7.5.4
         version: 7.5.4(astro@4.7.1(@types/node@16.18.11)(typescript@5.4.5))
-      '@nanostores/solid':
-        specifier: ^0.4.2
-        version: 0.4.2(nanostores@0.10.3)(solid-js@1.8.17)
       '@trpc/client':
         specifier: ^10.45.2
         version: 10.45.2(@trpc/server@10.45.2)
@@ -41,9 +38,6 @@ importers:
       jspdf-autotable:
         specifier: ^3.8.2
         version: 3.8.2(jspdf@2.5.1)
-      nanostores:
-        specifier: ^0.10.3
-        version: 0.10.3
       node-fetch:
         specifier: ^3.3.2
         version: 3.3.2
@@ -168,11 +162,15 @@ packages:
     resolution: {integrity: sha512-Z9IYjuXSArkAUx3N6xj6+Bnvx8OdUSHA8YoOgyepp3+zJmtVYJIl/I18GozdJVW1p5u/CNpl3Km7/gwTJK85cw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
 
-  '@astrojs/solid-js@4.1.0':
-    resolution: {integrity: sha512-q7zZF1P/zaCHYbE3KyA7be31VSlH3FGUiU/1xutifrYRdk+kbiELUW3Z2DjEGf05lJ2GKtZyHmFufxX8tvMoQA==}
+  '@astrojs/solid-js@4.4.0':
+    resolution: {integrity: sha512-nNX7x9dTcutb69yVGGC7/4vRECsV0dySmkl48AeV4qIAdCYXuH74Yu8KvPwRWRjtF0Z2Xp9ZgXG5KYCVHdBXJw==}
     engines: {node: ^18.17.1 || ^20.3.0 || >=21.0.0}
     peerDependencies:
+      solid-devtools: ^0.30.1
       solid-js: ^1.8.5
+    peerDependenciesMeta:
+      solid-devtools:
+        optional: true
 
   '@astrojs/tailwind@5.1.0':
     resolution: {integrity: sha512-BJoCDKuWhU9FT2qYg+fr6Nfb3qP4ShtyjXGHKA/4mHN94z7BGcmauQK23iy+YH5qWvTnhqkd6mQPQ1yTZTe9Ig==}
@@ -1120,12 +1118,6 @@ packages:
   '@msgpack/msgpack@2.8.0':
     resolution: {integrity: sha512-h9u4u/jiIRKbq25PM+zymTyW6bhTzELvOoUd+AvYriWOAKpLGnIamaET3pnHYoI5iYphAHBI4ayx0MehR+VVPQ==}
     engines: {node: '>= 10'}
-
-  '@nanostores/solid@0.4.2':
-    resolution: {integrity: sha512-8v32+C9KdRbnvP4x4Oiw/CtL1tZwbRxYfmFsPIY9PXevCgxSFnicG6VnLLtNAR7F0kl8Ec7OROHO34Ffv0KDzg==}
-    peerDependencies:
-      nanostores: '>=0.8.0'
-      solid-js: ^1.6.0
 
   '@nodelib/fs.scandir@2.1.5':
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
@@ -3892,10 +3884,6 @@ packages:
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
-  nanostores@0.10.3:
-    resolution: {integrity: sha512-Nii8O1XqmawqSCf9o2aWqVxhKRN01+iue9/VEd1TiJCr9VT5XxgPFbF1Edl1XN6pwJcZRsl8Ki+z01yb/T/C2g==}
-    engines: {node: ^18.0.0 || >=20.0.0}
-
   natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
 
@@ -5476,7 +5464,7 @@ snapshots:
     dependencies:
       prismjs: 1.29.0
 
-  '@astrojs/solid-js@4.1.0(solid-js@1.8.17)(vite@5.2.11(@types/node@16.18.11))':
+  '@astrojs/solid-js@4.4.0(solid-js@1.8.17)(vite@5.2.11(@types/node@16.18.11))':
     dependencies:
       solid-js: 1.8.17
       vite-plugin-solid: 2.10.2(solid-js@1.8.17)(vite@5.2.11(@types/node@16.18.11))
@@ -6409,11 +6397,6 @@ snapshots:
       - supports-color
 
   '@msgpack/msgpack@2.8.0': {}
-
-  '@nanostores/solid@0.4.2(nanostores@0.10.3)(solid-js@1.8.17)':
-    dependencies:
-      nanostores: 0.10.3
-      solid-js: 1.8.17
 
   '@nodelib/fs.scandir@2.1.5':
     dependencies:
@@ -9691,8 +9674,6 @@ snapshots:
       thenify-all: 1.6.0
 
   nanoid@3.3.7: {}
-
-  nanostores@0.10.3: {}
 
   natural-compare@1.4.0: {}
 
