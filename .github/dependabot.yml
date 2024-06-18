@@ -10,6 +10,11 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    groups:
+      astro:
+        applies-to: version-updates
+        patterns:
+          - "*astro*"
 
   - package-ecosystem: pip
     directory: /
