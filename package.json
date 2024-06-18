@@ -24,12 +24,12 @@
     "ss:upr": "pnpm --recursive update"
   },
   "dependencies": {
-    "@astrojs/solid-js": "^4.1.0",
+    "@astrojs/solid-js": "^4.4.0",
     "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/vercel": "^7.5.4",
+    "@astrojs/vercel": "^7.7.1",
     "@trpc/client": "^10.45.2",
     "@trpc/server": "^10.45.2",
-    "astro": "^4.7.1",
+    "astro": "^4.10.3",
     "drizzle-orm": "^0.30.10",
     "fast-xml-parser": "^4.3.6",
     "jspdf": "^2.5.1",
@@ -42,7 +42,7 @@
     "zod": "^3.23.6"
   },
   "devDependencies": {
-    "@astrojs/ts-plugin": "^1.6.1",
+    "@astrojs/ts-plugin": "^1.8.0",
     "@changesets/cli": "^2.27.1",
     "@commitlint/cli": "^19.3.0",
     "@commitlint/config-conventional": "^19.2.2",
@@ -60,7 +60,7 @@
     "eslint-plugin-solid": "^0.14.0",
     "lint-staged": "^15.2.7",
     "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-astro": "^0.14.0",
     "prettier-plugin-tailwindcss": "^0.5.14",
     "prettier-plugin-toml": "^2.0.1",
     "ts-node": "^10.9.2",
