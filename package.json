@@ -51,7 +51,7 @@
     "@typescript-eslint/eslint-plugin": "^7.8.0",
     "@typescript-eslint/parser": "^7.8.0",
     "commitizen": "^4.3.0",
-    "daisyui": "^4.11.1",
+    "daisyui": "^4.12.10",
     "drizzle-kit": "^0.20.17",
     "eslint": "^9.2.0",
     "eslint-config-prettier": "9.1.0",
