@@ -17,7 +17,7 @@ copydetect = { git = "https://github.com/kjurel/copydetect-slim", optional = tru
 asgi-correlation-id = { git = "https://github.com/snok/asgi-correlation-id" }
 fastapi-login = { git = "https://github.com/MushroomMaula/fastapi_login" }
 fastapi-class = { git = "https://github.com/yezz123/fastapi-class" }
-requests = "^2.31.0"
+requests = "^2.32.3"
 
 [tool.poetry.extras]
 instagram = ["instagrapi"]
