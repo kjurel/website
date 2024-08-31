@@ -1,0 +1,167 @@
+---
+// Import the Supabase client
+import { createClient } from '@supabase/supabase-js';
+
+// Initialize Supabase client
+const supabaseUrl = 'https://izetyjbsztttkcwwswag.supabase.co';
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+let users = [];
+let username = '';
+let password = '';
+let errorMessage = '';
+let successMessage = '';
+
+// Fetch users from Supabase
+const fetchUsers = async () => {
+  try {
+    const { data, error } = await supabase.from('users').select('*');
+    if (error) throw error;
+    users = data;
+  } catch (error) {
+    errorMessage = error.message;
+  }
+};
+
+// Add user to Supabase
+const addUser = async (e) => {
+  e.preventDefault();
+  if (!username || !password) {
+    errorMessage = 'Username and password are required!';
+    return;
+  }
+
+  try {
+    const { data, error } = await supabase.from('users').insert([{ username, password }]);
+    if (error) throw error;
+    successMessage = 'User added successfully!';
+    username = '';
+    password = '';
+    await fetchUsers(); // Refresh user list
+  } catch (error) {
+    errorMessage = error.message;
+  }
+};
+
+// Initial data fetch
+await fetchUsers();
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Table and Form</title>
+  <link href="/dist/output.css" rel="stylesheet">
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+  <div class="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+    <!-- Error and Success Messages -->
+    {errorMessage && <p class="text-red-500 mb-4">{errorMessage}</p>}
+    {successMessage && <p class="text-green-500 mb-4">{successMessage}</p>}
+
+    <!-- Table of Users -->
+    <table class="w-full border-collapse border border-gray-200 mb-6">
+      <thead>
+        <tr class="bg-gray-200">
+          <th class="border border-gray-300 p-2">Username</th>
+          <th class="border border-gray-300 p-2">Password</th>
+        </tr>
+      </thead>
+      <tbody>
+        {users.map(user => (
+          <tr key={user.id}>
+            <td class="border border-gray-300 p-2">{user.username}</td>
+            <td class="border border-gray-300 p-2">{user.password}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <!-- Form for Adding Users -->
+    <form onSubmit={addUser} class="flex flex-col items-center">
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onInput={(e) => username = e.target.value}
+        class="border border-gray-300 p-2 mb-4 rounded"
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onInput={(e) => password = e.target.value}
+        class="border border-gray-300 p-2 mb-4 rounded"
+      />
+      <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add User</button>
+    </form>
+
+    <!-- Inline Script -->
+    <script define:vars={{ supabaseUrl, supabaseKey }}>
+      import { createClient } from '@supabase/supabase-js';
+      // const supabaseUrl = 'https://izetyjbsztttkcwwswag.supabase.co';
+      const supabase = createClient(supabaseUrl, supabaseKey);
+
+      const form = document.getElementById('user-form');
+      const usernameInput = document.getElementById('username-input');
+      const passwordInput = document.getElementById('password-input');
+      const userTableBody = document.getElementById('user-table-body');
+      const errorMessageElement = document.getElementById('error-message');
+      const successMessageElement = document.getElementById('success-message');
+
+      const fetchUsers = async () => {
+        try {
+          const { data, error } = await supabase.from('users').select('*');
+          if (error) throw error;
+          userTableBody.innerHTML = '';
+          data.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+              <td class="border border-gray-300 p-2">${user.username}</td>
+              <td class="border border-gray-300 p-2">${user.password}</td>
+            `;
+            userTableBody.appendChild(row);
+          });
+        } catch (error) {
+          errorMessageElement.textContent = `Error fetching users: ${error.message}`;
+          errorMessageElement.style.display = 'block';
+        }
+      };
+
+      const addUser = async (event) => {
+        event.preventDefault();
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        if (!username || !password) {
+          errorMessageElement.textContent = 'Username and password are required!';
+          errorMessageElement.style.display = 'block';
+          return;
+        }
+
+        try {
+          const { data, error } = await supabase.from('users').insert([{ username, password }]);
+          if (error) throw error;
+
+          successMessageElement.textContent = 'User added successfully!';
+          successMessageElement.style.display = 'block';
+          usernameInput.value = '';
+          passwordInput.value = '';
+          await fetchUsers(); // Refresh user list
+        } catch (error) {
+          errorMessageElement.textContent = `Error adding user: ${error.message}`;
+          errorMessageElement.style.display = 'block';
+        }
+      };
+
+      form.addEventListener('submit', addUser);
+
+      // Initial data fetch
+      fetchUsers();
+    </script>
+  </div>
+</body>
+</html>

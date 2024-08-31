@@ -1,0 +1,6 @@
+modules = ["nodejs-20"]
+
+[[ports]]
+localPort = 4321
+externalPort = 3000
+exposeLocalhost = true
