@@ -1,0 +1,69 @@
+---
+import BaseLayout from "@/components/Base.Layout.astro";
+import AuthComponent from "@/components/netaid/authButton.tsx"
+import UserTableModal from "@/components/netaid/getAll.tsx"
+---
+
+<BaseLayout title="Agencies">
+  <div class="flex justify-center p-4">
+  <div class="w-full max-w-4xl bg-white p-6 rounded-lg shadow-lg">
+      <!-- Navbar -->
+    <div class="navbar bg-base-200 rounded-lg mb-4">
+      <div class="flex-1">
+        <a class="btn btn-ghost normal-case text-xl">NetAid</a>
+      </div>
+      <div class="flex-none">
+        <UserTableModal client:load/>
+        <AuthComponent client:load />
+      </div>
+    </div>
+
+        <h3 class="text-lg font-bold">Incident Map</h3>
+      <div class="p-2">
+      <iframe class="map w-full rounded-lg shadow-lg" style = "height: 450px;" loading="lazy" src="https://www.google.com/maps/d/embed?mid=1CREgKcLloBTtDt0M9q_Rvmxpur-PnqY"/>
+      </div>
+        <h3 class="text-lg font-bold">Recent Incidents</h3>
+    <!-- Error and Success Messages -->
+    <!-- {errorMessage && <p class="text-red-500 mb-4">{errorMessage}</p>} -->
+    <!-- {successMessage && <p class="text-green-500 mb-4">{successMessage}</p>} -->
+
+    <!-- Table of Users -->
+    <!-- <table class="w-full border-collapse border border-gray-200 mb-6"> -->
+    <!--   <thead> -->
+    <!--     <tr class="bg-gray-200"> -->
+    <!--       <th class="border border-gray-300 p-2">Username</th> -->
+    <!--       <th class="border border-gray-300 p-2">Password</th> -->
+    <!--     </tr> -->
+    <!--   </thead> -->
+    <!--   <tbody> -->
+    <!--     {users.map(user => ( -->
+    <!--       <tr key={user.id}> -->
+    <!--         <td class="border border-gray-300 p-2">{user.username}</td> -->
+    <!--         <td class="border border-gray-300 p-2">{user.password}</td> -->
+    <!--       </tr> -->
+    <!--     ))} -->
+    <!--   </tbody> -->
+    <!-- </table> -->
+    <!---->
+    <!-- <!-- Form for Adding Users -->
+    <!-- <form onSubmit={addUser} class="flex flex-col items-center"> -->
+    <!--   <input -->
+    <!--     type="text" -->
+    <!--     placeholder="Username" -->
+    <!--     value={username} -->
+    <!--     onInput={(e) => username = e.target.value} -->
+    <!--     class="border border-gray-300 p-2 mb-4 rounded" -->
+    <!--   /> -->
+    <!--   <input -->
+    <!--     type="password" -->
+    <!--     placeholder="Password" -->
+    <!--     value={password} -->
+    <!--     onInput={(e) => password = e.target.value} -->
+    <!--     class="border border-gray-300 p-2 mb-4 rounded" -->
+    <!--   /> -->
+    <!--   <button type="submit" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">Add User</button> -->
+    <!-- </form> -->
+    <!---->
+  </div>
+  </div>
+</BaseLayout>
