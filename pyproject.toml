@@ -29,7 +29,7 @@ pre-commit = "^3.6.0"
 black = "^23.11.0"
 mypy = "^1.6.1"
 aerich = "^0.7.2"
-types-requests = "^2.31.0.20240406"
+types-requests = "^2.32.0.20240914"
 
 [tool.poetry.scripts]
 dev = "backend.run:dev"
