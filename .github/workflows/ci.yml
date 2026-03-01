@@ -65,7 +65,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
 
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: build
           path: .vercel/output/
@@ -101,7 +101,7 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps:
   #     - name: Download build artifacts
-  #       uses: actions/download-artifact@v4
+  #       uses: actions/download-artifact@v8
   #       with:
   #         name: build-artifacts
   #         path: prod-build/
